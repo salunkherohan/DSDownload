@@ -7,15 +7,12 @@
 
 import Cocoa
 
-
 class LoginViewController: NSViewController {
     
     static func setup() -> LoginViewController {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
         let identifier = NSStoryboard.SceneIdentifier("LoginViewController")
-        guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? LoginViewController else {
-            fatalError("LoginViewController not found - Check Main.storyboard")
-        }
+        guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? LoginViewController else {fatalError("LoginViewController not found - Check Main.storyboard")}
         return viewcontroller
     }
     
@@ -30,6 +27,7 @@ class LoginViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureMenus()
     }
     
     @IBAction func launchConnect(_ sender: Any) {
@@ -64,14 +62,33 @@ class LoginViewController: NSViewController {
         }
     }
     
-    @IBAction func quit(sender: NSButton) {
-        NSApplication.shared.terminate(sender)
+    @IBAction func willExitAction(_ sender: Any) {
+        guard let event = NSApplication.shared.currentEvent else {return}
+        NSMenu.popUpContextMenu(exitContextMenu, with: event, for: sender as! NSView)
     }
     
-    // Mark : Private
+    @objc private func willExit(_ sender: AnyObject) {
+        /* Shutdown app */
+        NSApplication.shared.terminate(self)
+    }
+    
+    // MARK: Private
+    
+    private let exitContextMenu = NSMenu()
     
     private func configureUI() {
         confirmButton.wantsLayer = true
         confirmButton.layer?.backgroundColor = NSColor(calibratedRed: 0.20, green: 0.44, blue: 0.58, alpha: 1.0).cgColor
+    
+        if let loginDetails = SessionService.shared.loginDetails {
+            quickConnectIdField.stringValue = loginDetails.quickId
+            loginField.stringValue = loginDetails.login
+            passwordField.stringValue = loginDetails.password
+        }
+    }
+    
+    private func configureMenus() {
+        let exitAppItem = NSMenuItem(title: "Exit", action: #selector(willExit(_:)), keyEquivalent: "q")
+        exitContextMenu.addItem(exitAppItem)
     }
 }

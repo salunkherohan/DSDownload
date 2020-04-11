@@ -8,11 +8,7 @@
 import Foundation
 
 /// Parent class for all managers
-class DSDownloadManager {
-    
-    // Do something ?
-    
-}
+class DSDownloadManager {}
 
 extension Notification.Name {
     static let sessionExpired = Notification.Name("session_expired")

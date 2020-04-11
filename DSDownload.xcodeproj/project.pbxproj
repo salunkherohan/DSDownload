@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18413106229EDF1300C28E72 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18413105229EDF1300C28E72 /* Preferences.storyboard */; };
 		185164152209EF8400A02546 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185164142209EF8400A02546 /* KeychainService.swift */; };
 		185164162209EFE000A02546 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185164142209EF8400A02546 /* KeychainService.swift */; };
 		185164182209F2AD00A02546 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185164172209F2AD00A02546 /* SessionManager.swift */; };
@@ -38,8 +37,6 @@
 		189E428622035A4C007B8F0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189E428422035A4C007B8F0B /* Main.storyboard */; };
 		189E429222035A4D007B8F0B /* DSDownload_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189E429122035A4D007B8F0B /* DSDownload_macOSTests.swift */; };
 		189E429D22035A4D007B8F0B /* DSDownload_macOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189E429C22035A4D007B8F0B /* DSDownload_macOSUITests.swift */; };
-		18B955E2229EE40A0000BC50 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B955E1229EE40A0000BC50 /* PreferencesViewController.swift */; };
-		18B955E4229EE4290000BC50 /* PreferencesWindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B955E3229EE4290000BC50 /* PreferencesWindowViewController.swift */; };
 		18D583E9220475ED00D99289 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 18D583E8220475ED00D99289 /* Podfile */; };
 		18D583EE220476AF00D99289 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D583ED220476AF00D99289 /* LoginViewController.swift */; };
 		18D583EF220476AF00D99289 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D583ED220476AF00D99289 /* LoginViewController.swift */; };
@@ -56,8 +53,6 @@
 		18F3B56B220CA7130074676C /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187FFF55220C6C2800EC502C /* TaskManager.swift */; };
 		18F3B5792211672E0074676C /* DSDownloadTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F3B5782211672E0074676C /* DSDownloadTools.swift */; };
 		18F3B57A221167320074676C /* DSDownloadTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F3B5782211672E0074676C /* DSDownloadTools.swift */; };
-		18F3B57C2211A4320074676C /* DSDownloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F3B57B2211A4320074676C /* DSDownloadModel.swift */; };
-		18F3B57D2211A4320074676C /* DSDownloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F3B57B2211A4320074676C /* DSDownloadModel.swift */; };
 		18F3B57F2211A4760074676C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F3B57E2211A4760074676C /* Task.swift */; };
 		18F3B5802211A4760074676C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F3B57E2211A4760074676C /* Task.swift */; };
 		18F3B5832211AB420074676C /* DSDownloadInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F3B5822211AB420074676C /* DSDownloadInit.swift */; };
@@ -67,6 +62,7 @@
 		18F3B60F2214693D0074676C /* StatisticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F3B60E2214693D0074676C /* StatisticManager.swift */; };
 		18F3B6102214693D0074676C /* StatisticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F3B60E2214693D0074676C /* StatisticManager.swift */; };
 		2FDF3CD8B203B97EA99C88E1 /* Pods_DSDownload_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDE454B8E05118AD970BBE2A /* Pods_DSDownload_iOS.framework */; };
+		6997D0D6238FFCA9008C9D7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997D0D5238FFCA9008C9D7B /* Foundation.framework */; };
 		DCAE7032E15C6CB00617114A /* Pods_DSDownload_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2FA01D09B575DCEBA25D95 /* Pods_DSDownload_macOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -102,7 +98,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		18413105229EDF1300C28E72 /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		185164142209EF8400A02546 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		185164172209F2AD00A02546 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		185164192209F30A00A02546 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +106,7 @@
 		188E05F62293F9B100698655 /* VPNProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNProfile.swift; sourceTree = "<group>"; };
 		188E05FE22942B0100698655 /* NSImage+color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+color.swift"; sourceTree = "<group>"; };
 		1891E59B2271FDB100AE0E44 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		189E424922035A26007B8F0B /* DSDownload-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DSDownload-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		189E424922035A26007B8F0B /* DSDownload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSDownload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		189E424C22035A26007B8F0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		189E425122035A26007B8F0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		189E425322035A27007B8F0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -135,8 +130,6 @@
 		189E429822035A4D007B8F0B /* DSDownload-macOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DSDownload-macOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		189E429C22035A4D007B8F0B /* DSDownload_macOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDownload_macOSUITests.swift; sourceTree = "<group>"; };
 		189E429E22035A4D007B8F0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18B955E1229EE40A0000BC50 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
-		18B955E3229EE4290000BC50 /* PreferencesWindowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowViewController.swift; sourceTree = "<group>"; };
 		18D583E8220475ED00D99289 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		18D583ED220476AF00D99289 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		18D583F1220477A600D99289 /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
@@ -146,7 +139,6 @@
 		18D5840F220490BF00D99289 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		18D58411220490D900D99289 /* DSDownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDownloadViewController.swift; sourceTree = "<group>"; };
 		18F3B5782211672E0074676C /* DSDownloadTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDownloadTools.swift; sourceTree = "<group>"; };
-		18F3B57B2211A4320074676C /* DSDownloadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDownloadModel.swift; sourceTree = "<group>"; };
 		18F3B57E2211A4760074676C /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		18F3B5822211AB420074676C /* DSDownloadInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDownloadInit.swift; sourceTree = "<group>"; };
 		18F3B60B221468E50074676C /* Statistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistic.swift; sourceTree = "<group>"; };
@@ -154,6 +146,8 @@
 		584BBB791A65351615089CC9 /* Pods-DSDownload-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSDownload-macOS.release.xcconfig"; path = "Target Support Files/Pods-DSDownload-macOS/Pods-DSDownload-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		5DBD4E9B0B431D3124655CFB /* Pods-DSDownload-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSDownload-iOS.debug.xcconfig"; path = "Target Support Files/Pods-DSDownload-iOS/Pods-DSDownload-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		635C55DCF32F57CF19324477 /* Pods-DSDownload-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSDownload-macOS.debug.xcconfig"; path = "Target Support Files/Pods-DSDownload-macOS/Pods-DSDownload-macOS.debug.xcconfig"; sourceTree = "<group>"; };
+		6961929723A83910002876C6 /* DSDownload.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DSDownload.entitlements; sourceTree = "<group>"; };
+		6997D0D5238FFCA9008C9D7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8D2FA01D09B575DCEBA25D95 /* Pods_DSDownload_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DSDownload_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE454B8E05118AD970BBE2A /* Pods_DSDownload_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DSDownload_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C1A9D1FA8AB1F254690CFC /* Pods-DSDownload-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSDownload-iOS.release.xcconfig"; path = "Target Support Files/Pods-DSDownload-iOS/Pods-DSDownload-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6997D0D6238FFCA9008C9D7B /* Foundation.framework in Frameworks */,
 				DCAE7032E15C6CB00617114A /* Pods_DSDownload_macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,7 +250,7 @@
 		189E424A22035A26007B8F0B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				189E424922035A26007B8F0B /* DSDownload-iOS.app */,
+				189E424922035A26007B8F0B /* DSDownload.app */,
 				189E425D22035A27007B8F0B /* DSDownload-iOSTests.xctest */,
 				189E426822035A27007B8F0B /* DSDownload-iOSUITests.xctest */,
 				189E427C22035A4C007B8F0B /* DSDownload.app */,
@@ -297,12 +292,12 @@
 		189E427D22035A4C007B8F0B /* DSDownload-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				6961929723A83910002876C6 /* DSDownload.entitlements */,
 				188E05FD22942AD000698655 /* Extension */,
 				18D583F02204779200D99289 /* Monitor */,
 				18D583EB2204767A00D99289 /* Controllers */,
 				18D583EC2204768800D99289 /* Supporting Files */,
 				189E428422035A4C007B8F0B /* Main.storyboard */,
-				18413105229EDF1300C28E72 /* Preferences.storyboard */,
 				189E428822035A4C007B8F0B /* DSDownload_macOS.entitlements */,
 			);
 			path = "DSDownload-macOS";
@@ -326,22 +321,13 @@
 			path = "DSDownload-macOSUITests";
 			sourceTree = "<group>";
 		};
-		18B955E0229EE3E20000BC50 /* Preferences */ = {
-			isa = PBXGroup;
-			children = (
-				18B955E1229EE40A0000BC50 /* PreferencesViewController.swift */,
-				18B955E3229EE4290000BC50 /* PreferencesWindowViewController.swift */,
-			);
-			path = Preferences;
-			sourceTree = "<group>";
-		};
 		18D583EA2204760F00D99289 /* DSDownload */ = {
 			isa = PBXGroup;
 			children = (
 				18F3B5812211AB310074676C /* Core */,
+				18D583F422048EAD00D99289 /* Static */,
 				18F3B577221167190074676C /* Helpers */,
 				185164132209EF4500A02546 /* Services */,
-				18D583F422048EAD00D99289 /* Static */,
 				18D583F522048EC200D99289 /* Network */,
 				18D583F622048ED300D99289 /* Manager */,
 				18D5840D2204906B00D99289 /* Models */,
@@ -352,7 +338,6 @@
 		18D583EB2204767A00D99289 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				18B955E0229EE3E20000BC50 /* Preferences */,
 				18D583ED220476AF00D99289 /* LoginViewController.swift */,
 				185164192209F30A00A02546 /* HomeViewController.swift */,
 			);
@@ -417,7 +402,6 @@
 		18D5840D2204906B00D99289 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				18F3B57B2211A4320074676C /* DSDownloadModel.swift */,
 				18F3B57E2211A4760074676C /* Task.swift */,
 				18F3B60B221468E50074676C /* Statistic.swift */,
 				188E05F62293F9B100698655 /* VPNProfile.swift */,
@@ -454,6 +438,7 @@
 		74E780C19623B6DFC36EC2D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6997D0D5238FFCA9008C9D7B /* Foundation.framework */,
 				BDE454B8E05118AD970BBE2A /* Pods_DSDownload_iOS.framework */,
 				8D2FA01D09B575DCEBA25D95 /* Pods_DSDownload_macOS.framework */,
 			);
@@ -479,7 +464,7 @@
 			);
 			name = "DSDownload-iOS";
 			productName = "DSDownload-iOS";
-			productReference = 189E424922035A26007B8F0B /* DSDownload-iOS.app */;
+			productReference = 189E424922035A26007B8F0B /* DSDownload.app */;
 			productType = "com.apple.product-type.application";
 		};
 		189E425C22035A27007B8F0B /* DSDownload-iOSTests */ = {
@@ -659,7 +644,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18413106229EDF1300C28E72 /* Preferences.storyboard in Resources */,
 				189E428322035A4C007B8F0B /* Assets.xcassets in Resources */,
 				189E428622035A4C007B8F0B /* Main.storyboard in Resources */,
 			);
@@ -768,7 +752,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				188E05F72293F9B100698655 /* VPNProfile.swift in Sources */,
-				18F3B57C2211A4320074676C /* DSDownloadModel.swift in Sources */,
 				18F3B5792211672E0074676C /* DSDownloadTools.swift in Sources */,
 				18F3B60C221468E50074676C /* Statistic.swift in Sources */,
 				18D58410220490BF00D99289 /* LoginViewController.swift in Sources */,
@@ -821,12 +804,9 @@
 				18D583EE220476AF00D99289 /* LoginViewController.swift in Sources */,
 				189E427F22035A4C007B8F0B /* AppDelegate.swift in Sources */,
 				1851641A2209F30A00A02546 /* HomeViewController.swift in Sources */,
-				18B955E4229EE4290000BC50 /* PreferencesWindowViewController.swift in Sources */,
 				18F3B56B220CA7130074676C /* TaskManager.swift in Sources */,
-				18B955E2229EE40A0000BC50 /* PreferencesViewController.swift in Sources */,
 				18F3B5802211A4760074676C /* Task.swift in Sources */,
 				185164A5220B3F7300A02546 /* SessionService.swift in Sources */,
-				18F3B57D2211A4320074676C /* DSDownloadModel.swift in Sources */,
 				185164162209EFE000A02546 /* KeychainService.swift in Sources */,
 				18D583F2220477A600D99289 /* EventMonitor.swift in Sources */,
 				18F3B57A221167320074676C /* DSDownloadTools.swift in Sources */,
@@ -1012,7 +992,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = R625K24H9Q;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1030,20 +1010,21 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DSDownload-iOS/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "fr.thomas-legravier.DSDownload.DSDownload-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dsdownload;
+				PRODUCT_NAME = DSDownload;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1086,7 +1067,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = R625K24H9Q;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1098,19 +1079,20 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DSDownload-iOS/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "fr.thomas-legravier.DSDownload.DSDownload-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dsdownload;
+				PRODUCT_NAME = DSDownload;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1151,10 +1133,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = F86YF9Z2LT;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1172,7 +1155,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DSDownload-iOSTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1186,7 +1169,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DSDownload-iOS.app/DSDownload-iOS";
 			};
@@ -1227,10 +1210,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = F86YF9Z2LT;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1242,7 +1226,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DSDownload-iOSTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1255,7 +1239,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DSDownload-iOS.app/DSDownload-iOS";
 				VALIDATE_PRODUCT = YES;
@@ -1299,7 +1283,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = F86YF9Z2LT;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1317,7 +1301,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DSDownload-iOSUITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1331,7 +1315,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "DSDownload-iOS";
 			};
@@ -1374,7 +1358,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = F86YF9Z2LT;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1386,7 +1370,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DSDownload-iOSUITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1399,7 +1383,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "DSDownload-iOS";
 				VALIDATE_PRODUCT = YES;
@@ -1440,12 +1424,15 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_ENTITLEMENTS = "DSDownload-macOS/DSDownload.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = R625K24H9Q;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1463,6 +1450,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DSDownload-macOS/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1472,12 +1460,12 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "fr.dsdownload-macos";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dsdownload;
 				PRODUCT_NAME = DSDownload;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1515,12 +1503,15 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_ENTITLEMENTS = "DSDownload-macOS/DSDownload.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = R625K24H9Q;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1532,6 +1523,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DSDownload-macOS/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1540,12 +1532,12 @@
 				MARKETING_VERSION = 0.0.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "fr.dsdownload-macos";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dsdownload;
 				PRODUCT_NAME = DSDownload;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1583,12 +1575,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = F86YF9Z2LT;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1606,6 +1598,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DSDownload-macOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1620,7 +1613,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DSDownload-macOS.app/Contents/MacOS/DSDownload-macOS";
 			};
 			name = Debug;
@@ -1659,12 +1652,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = F86YF9Z2LT;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1676,6 +1669,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DSDownload-macOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1689,7 +1683,7 @@
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DSDownload-macOS.app/Contents/MacOS/DSDownload-macOS";
 			};
 			name = Release;
@@ -1732,7 +1726,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = F86YF9Z2LT;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1750,6 +1744,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DSDownload-macOSUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1764,7 +1759,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = "DSDownload-macOS";
 			};
 			name = Debug;
@@ -1807,7 +1802,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = F86YF9Z2LT;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1819,6 +1814,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DSDownload-macOSUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1832,7 +1828,7 @@
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = "DSDownload-macOS";
 			};
 			name = Release;

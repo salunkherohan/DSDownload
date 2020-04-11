@@ -7,21 +7,17 @@
 
 struct DSDownloadConstants {
     
-    // MARK : - Settings
-    static let statisticsIntervalRefreshForActive: Double = 3.0 // In seconds
-    static let tasksIntervalRefreshForActive: Double = 5.0 // In seconds
-    
-    static let statisticsIntervalRefreshForInActive: Double = 240.0 // In seconds
+    // MARK: - Settings
+    static let tasksIntervalRefreshForActive: Double = 2.0 // In seconds
     static let tasksIntervalRefreshForInActive: Double = 300.0 // In seconds
-    
     static let VPNIntervalRefresh: Double = 240.0 // In seconds
     
-    // MARK : - Paths
+    // MARK: - Paths
     static let basePath: String = "https://global.QuickConnect.to/"
     
-    // MARK : - Logs
+    // MARK: - Logs
     static let networkLogs: Bool = true // Show logs for api calls
     
-    // MARK : - TMP
+    // MARK: - TMP
     static let forceLogin: Bool = false // Force login at launch
 }

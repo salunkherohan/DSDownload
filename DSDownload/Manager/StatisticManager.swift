@@ -26,23 +26,21 @@ class StatisticManager: DSDownloadManager {
             "version": 1
         ]
         
-        DSDownloadNetwork().performRequest(.get, path: "DownloadStation/statistic.cgi", params: params, success: { (results) in
-            self.saveResults(results, callback: success)
+        DSDownloadNetwork().performRequest(.get, path: "DownloadStation/statistic.cgi", params: params, success: { [weak self] (results) in
+            guard let stats = self?.save(results) else {return}
+            DispatchQueue.main.async {success(stats)}
         }) { (error) in
             // Error
         }
     }
     
-    // Mark : Private
+    // MARK: Private
     
-    private func saveResults(_ results: JSON, callback: (Statistic) -> ()) {
+    private func save(_ results: JSON) -> Statistic? {
         let realm = try! Realm()
         
         guard let statistics = results.dictionary?["data"]?.object
-        else {return}
-        
-        // Force int
-        
+        else {return nil}
         
         // Delete statistics
         try! realm.write {
@@ -50,9 +48,11 @@ class StatisticManager: DSDownloadManager {
         }
         
         // Save statistics
+        let stats = Statistic(value: statistics)
         try! realm.write {
-            let stats = realm.create(Statistic.self, value: statistics)
-            callback(stats)
+            realm.add(stats)
         }
+        
+        return stats
     }
 }
