@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.1.0)
+  - KeychainSwift (19.0.0)
   - ObjectMapper (3.5.2)
   - ObjectMapperAdditions/Core (6.0.2):
     - ObjectMapper
@@ -17,33 +18,27 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - KeychainSwift
   - ObjectMapper
   - ObjectMapperAdditions/Realm
   - RealmSwift
   - SwiftyJSON
-  - SynologySwift (from `https://github.com/Thomaslegravier/SynologySwift.git`, branch `develop`)
+  - SynologySwift
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - KeychainSwift
     - ObjectMapper
     - ObjectMapperAdditions
     - Realm
     - RealmSwift
     - SwiftyJSON
-
-EXTERNAL SOURCES:
-  SynologySwift:
-    :branch: develop
-    :git: https://github.com/Thomaslegravier/SynologySwift.git
-
-CHECKOUT OPTIONS:
-  SynologySwift:
-    :commit: 1155e198ed81d4d664e7c276c94e03b89762e898
-    :git: https://github.com/Thomaslegravier/SynologySwift.git
+    - SynologySwift
 
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
+  KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
   ObjectMapper: b53ae947d370bf89423e86be7d4e2d2b2a8d3f40
   ObjectMapperAdditions: 923fa7cdc45a7937e08fea8c715d18fc3604b122
   Realm: e125f464884cda953ebefe70c671b75b03b81b9b
@@ -51,6 +46,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   SynologySwift: 4341c4342b533adc4fa8abee0852b7a8f4c25ec6
 
-PODFILE CHECKSUM: 10dad5263d8bf852b0908fd0622cbfdf6c2c7905
+PODFILE CHECKSUM: 24686e41c3f5d96040917f2d9f663633d44f50a4
 
 COCOAPODS: 1.9.0

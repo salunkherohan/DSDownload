@@ -8,7 +8,7 @@
 import Alamofire
 import SwiftyJSON
 
-class DSDownloadNetwork: NSObject {
+class DSDownloadNetwork {
     
     fileprivate let domainNetwork = "com.dsdownload"
     

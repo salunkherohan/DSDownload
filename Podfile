@@ -9,7 +9,8 @@ target 'DSDownload-iOS' do
   pod 'SwiftyJSON'
   pod 'ObjectMapper'
   pod 'ObjectMapperAdditions/Realm'
-  pod 'SynologySwift', :git => 'https://github.com/Thomaslegravier/SynologySwift.git', :branch => 'develop'
+  pod 'SynologySwift'
+  pod 'KeychainSwift'
 end
 
 
@@ -20,5 +21,6 @@ target 'DSDownload-macOS' do
   pod 'SwiftyJSON'
   pod 'ObjectMapper'
   pod 'ObjectMapperAdditions/Realm'
-  pod 'SynologySwift', :git => 'https://github.com/Thomaslegravier/SynologySwift.git', :branch => 'develop'
+  pod 'SynologySwift'
+  pod 'KeychainSwift'
 end

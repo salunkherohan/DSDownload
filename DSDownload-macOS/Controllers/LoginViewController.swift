@@ -80,10 +80,10 @@ class LoginViewController: NSViewController {
         confirmButton.wantsLayer = true
         confirmButton.layer?.backgroundColor = NSColor(calibratedRed: 0.20, green: 0.44, blue: 0.58, alpha: 1.0).cgColor
     
-        if let loginDetails = SessionService.shared.loginDetails {
-            quickConnectIdField.stringValue = loginDetails.quickId
-            loginField.stringValue = loginDetails.login
-            passwordField.stringValue = loginDetails.password
+        if let loginCredentials = SessionService.shared.loginCredentials {
+            quickConnectIdField.stringValue = loginCredentials.quickId
+            loginField.stringValue = loginCredentials.login
+            passwordField.stringValue = loginCredentials.password
         }
     }
     

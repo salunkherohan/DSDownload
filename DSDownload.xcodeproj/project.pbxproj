@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		185164152209EF8400A02546 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185164142209EF8400A02546 /* KeychainService.swift */; };
-		185164162209EFE000A02546 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185164142209EF8400A02546 /* KeychainService.swift */; };
 		185164182209F2AD00A02546 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185164172209F2AD00A02546 /* SessionManager.swift */; };
 		1851641A2209F30A00A02546 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185164192209F30A00A02546 /* HomeViewController.swift */; };
 		185164A4220B3F7300A02546 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185164A3220B3F7300A02546 /* SessionService.swift */; };
@@ -98,7 +96,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		185164142209EF8400A02546 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		185164172209F2AD00A02546 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		185164192209F30A00A02546 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		185164A3220B3F7300A02546 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
@@ -216,7 +213,6 @@
 		185164132209EF4500A02546 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				185164142209EF8400A02546 /* KeychainService.swift */,
 				185164A3220B3F7300A02546 /* SessionService.swift */,
 			);
 			path = Services;
@@ -763,7 +759,6 @@
 				189E424D22035A26007B8F0B /* AppDelegate.swift in Sources */,
 				1891E59C2271FDB100AE0E44 /* NetworkManager.swift in Sources */,
 				185164A4220B3F7300A02546 /* SessionService.swift in Sources */,
-				185164152209EF8400A02546 /* KeychainService.swift in Sources */,
 				187FFF56220C6C2800EC502C /* TaskManager.swift in Sources */,
 				18F3B5832211AB420074676C /* DSDownloadInit.swift in Sources */,
 				18F3B57F2211A4760074676C /* Task.swift in Sources */,
@@ -807,7 +802,6 @@
 				18F3B56B220CA7130074676C /* TaskManager.swift in Sources */,
 				18F3B5802211A4760074676C /* Task.swift in Sources */,
 				185164A5220B3F7300A02546 /* SessionService.swift in Sources */,
-				185164162209EFE000A02546 /* KeychainService.swift in Sources */,
 				18D583F2220477A600D99289 /* EventMonitor.swift in Sources */,
 				18F3B57A221167320074676C /* DSDownloadTools.swift in Sources */,
 				18F3B6102214693D0074676C /* StatisticManager.swift in Sources */,
@@ -1431,7 +1425,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = R625K24H9Q;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1510,7 +1504,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = R625K24H9Q;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

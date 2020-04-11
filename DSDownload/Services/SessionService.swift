@@ -7,61 +7,72 @@
 
 import Foundation
 import SynologySwift
+import KeychainSwift
 
-class SessionService: NSObject {
+class SessionService {
     
     static let shared: SessionService = SessionService()
     
-    struct LoginDetails: Codable {
+    struct LoginCredentials: Codable {
         let quickId: String
         let login: String
         let password: String
     }
     
-    var session: SynologySwiftAuth.DSAuthInfos?
-    var loginDetails: LoginDetails?
+    init() {
+        configure()
+    }
+    
+    private(set) var session: SynologySwiftAuth.DSAuthInfos?
+    private(set) var loginCredentials: LoginCredentials?
     
     var isConnected: Bool {
         return session?.sid != nil
     }
     
-    /* Initialize session service at launch */
-    func initialize() {
-        restoreSession()
-        restoreLogin()
-    }
-    
-    func saveSession(_ session: SynologySwiftAuth.DSAuthInfos, details: LoginDetails?) {
+    func saveSession(_ session: SynologySwiftAuth.DSAuthInfos, credentials: LoginCredentials?) {
         let jsonEncoder = JSONEncoder()
-        guard let jsonData = try? jsonEncoder.encode(session) else {return}
-        guard let detailsJsonData = try? jsonEncoder.encode(details) else {return}
-        keychainService.save(service: keychainServiceName, key: keychainServiceSession, data: jsonData)
-        keychainService.save(service: keychainServiceName, key: keychainServiceLoginDetails, data: detailsJsonData)
+        guard let sessionData = try? jsonEncoder.encode(session) else {return}
+        guard let credentialsData = try? jsonEncoder.encode(credentials) else {return}
+        
+        // Save session
+        keychainService.set(sessionData, forKey: keychainServiceSession)
+        
+        // Save credentials
+        keychainService.set(credentialsData, forKey: keychainServiceLoginCredentials)
+        
         self.session = session
-        self.loginDetails = details
+        self.loginCredentials = credentials
     }
     
     func reset(automatic: Bool = false) {
-        keychainService.remove(service: keychainServiceName, key: keychainServiceSession)
-        self.session = nil
+        keychainService.delete(keychainServiceSession)
+        session = nil
         
         // Clean login details if not automatic logout
         if automatic == false {
-            keychainService.remove(service: keychainServiceName, key: keychainServiceLoginDetails)
-            self.loginDetails = nil
+            keychainService.delete(keychainServiceLoginCredentials)
+            loginCredentials = nil
         }
     }
     
     // MARK: Private
     
-    private let keychainService: KeychainService = KeychainService()
-    private let keychainServiceName: String = "synology-connector"
-    private let keychainServiceSession: String = "synology-session"
-    private let keychainServiceLoginDetails: String = "synology-login-details"
+    private let keychainService = KeychainSwift()
+    private let keychainServiceName = "synology-connector"
+    private let keychainServiceSession = "synology-session"
+    private let keychainServiceLoginCredentials = "synology-login-credentials"
+    
+    private func configure() {
+        keychainService.accessGroup = keychainServiceName
+        
+        restoreSession()
+        restoreLogin()
+    }
 
     private func restoreSession() {
         let jsonDecoder = JSONDecoder()
-        guard let sessionData = keychainService.load(service: keychainServiceName, key: keychainServiceSession),
+        guard let sessionData = keychainService.getData(keychainServiceSession),
               let session = try? jsonDecoder.decode(SynologySwiftAuth.DSAuthInfos.self, from: sessionData)
         else {return}
         self.session = session
@@ -69,9 +80,9 @@ class SessionService: NSObject {
     
     private func restoreLogin() {
         let jsonDecoder = JSONDecoder()
-        guard let loginDetailsData = keychainService.load(service: keychainServiceName, key: keychainServiceLoginDetails),
-              let loginDetails = try? jsonDecoder.decode(LoginDetails.self, from: loginDetailsData)
+        guard let loginCredentialsData = keychainService.getData(keychainServiceLoginCredentials),
+              let loginCredentials = try? jsonDecoder.decode(LoginCredentials.self, from: loginCredentialsData)
         else {return}
-        self.loginDetails = loginDetails
+        self.loginCredentials = loginCredentials
     }
 }

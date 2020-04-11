@@ -18,6 +18,6 @@ class DSDownloadInit: NSObject {
         Realm.Configuration.defaultConfiguration = config
         
         // Init session
-        SessionService.shared.initialize()
+        _ = SessionService.shared
     }
 }

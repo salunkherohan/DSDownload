@@ -17,7 +17,7 @@ class SessionManager: DSDownloadManager {
         SynologySwift.login(quickConnectid: quickId, sessionType: "FileStation", login: login, password: passwd, useDefaultCacheApis: true) { (result) in
             switch result {
             case .success(let session):
-                SessionService.shared.saveSession(session, details: SessionService.LoginDetails(quickId: quickId, login: login, password: passwd))
+                SessionService.shared.saveSession(session, credentials: SessionService.LoginCredentials(quickId: quickId, login: login, password: passwd))
             case .failure(_): (/* Do something ? */)
             }
             completion(result)
