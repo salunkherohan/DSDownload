@@ -1,0 +1,47 @@
+PODS:
+  - Alamofire (4.8.2)
+  - OneSignal (2.10.0)
+  - Realm (3.14.1):
+    - Realm/Headers (= 3.14.1)
+  - Realm/Headers (3.14.1)
+  - RealmSwift (3.14.1):
+    - Realm (= 3.14.1)
+  - SwiftyJSON (5.0.0)
+  - SynologySwift (0.1.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - OneSignal
+  - RealmSwift
+  - SwiftyJSON
+  - SynologySwift (from `https://github.com/Thomaslegravier/SynologySwift.git`, branch `develop`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - OneSignal
+    - Realm
+    - RealmSwift
+    - SwiftyJSON
+
+EXTERNAL SOURCES:
+  SynologySwift:
+    :branch: develop
+    :git: https://github.com/Thomaslegravier/SynologySwift.git
+
+CHECKOUT OPTIONS:
+  SynologySwift:
+    :commit: 0b735321b7ade128ea7b0558af8cb2c031ae41f5
+    :git: https://github.com/Thomaslegravier/SynologySwift.git
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  OneSignal: 0f5ff711d9f25da54885e4ab06ef0abc221a46ef
+  Realm: e12c9c2387d05c5bba3a9c394838f5870e85763b
+  RealmSwift: a82eab9b04c3e1616082c7e17aa300740847769c
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  SynologySwift: de35e54fd0e66d770a4bc60d8e2a9b5d383252e8
+
+PODFILE CHECKSUM: b68dfa242732214af7501d5a5f758b7ae50d6f61
+
+COCOAPODS: 1.7.0.beta.3

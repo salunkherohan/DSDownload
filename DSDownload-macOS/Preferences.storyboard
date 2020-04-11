@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="W30-6F-pI3">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="eLd-FV-xtr">
+            <objects>
+                <windowController id="W30-6F-pI3" customClass="PreferencesWindowViewController" customModule="DSDownload" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="3px-Mn-ERd">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="W30-6F-pI3" id="Cfx-6e-aZb"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="ce0-hZ-JmU" kind="relationship" relationship="window.shadowedContentViewController" id="vgU-Qr-lTd"/>
+                    </connections>
+                </windowController>
+                <customObject id="wdJ-ew-DvU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-159" y="11"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="AN5-wX-iGi">
+            <objects>
+                <tabViewController tabStyle="toolbar" id="ce0-hZ-JmU" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" image="NSInfo" id="FfA-S7-7Po"/>
+                        <tabViewItem identifier="" image="NSAdvanced" id="Ha3-5s-LXZ"/>
+                    </tabViewItems>
+                    <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
+                    <tabView key="tabView" type="noTabsNoBorder" id="HLa-GR-wqW">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <connections>
+                            <outlet property="delegate" destination="ce0-hZ-JmU" id="gWn-1A-9bD"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="HLa-GR-wqW" id="MKh-SY-U3W"/>
+                        <segue destination="fFI-6s-ruO" kind="relationship" relationship="tabItems" id="CxU-nx-vWb"/>
+                        <segue destination="SkM-bc-wG8" kind="relationship" relationship="tabItems" id="RNw-lk-eKB"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="CqA-69-yRs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-159" y="475"/>
+        </scene>
+        <!--Infos-->
+        <scene sceneID="EZV-AB-T4A">
+            <objects>
+                <viewController title="Infos" id="fFI-6s-ruO" customClass="PreferencesViewController" customModule="DSDownload" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Dvs-a4-VjF">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="158"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rXF-7h-Ng0">
+                                <rect key="frame" x="18" y="122" width="87" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Info option" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="DR7-QO-cWc">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="KGd-tj-AJ0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="508" y="299"/>
+        </scene>
+        <!--Advanced-->
+        <scene sceneID="cXg-Gd-3mk">
+            <objects>
+                <viewController title="Advanced" id="SkM-bc-wG8" customClass="PreferencesViewController" customModule="DSDownload" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="sBj-o9-Vvj">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="195"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XOD-UA-XRC">
+                                <rect key="frame" x="18" y="159" width="124" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Advanced option" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="S5l-fc-8zP">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="dK9-eP-Cm8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="508" y="559.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NSAdvanced" width="32" height="32"/>
+        <image name="NSInfo" width="32" height="32"/>
+    </resources>
+</document>
