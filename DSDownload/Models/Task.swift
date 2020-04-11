@@ -32,13 +32,13 @@ class Task: Object {
     @objc dynamic var type = ""
     @objc dynamic var username = ""
     @objc dynamic var additional: TaskAdditional? = nil
-    @objc dynamic var update_date = DSDownloadModel.getCurrentDateTime()
+    @objc dynamic var update_date = Date()
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
-    // Mark : Tools
+    // MARK: Tools
     
     /* Return speed on download or upload for task.
      * Priority on download speed.

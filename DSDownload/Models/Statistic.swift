@@ -10,6 +10,7 @@ import RealmSwift
 
 
 class Statistic: Object {
+    
     @objc dynamic var speed_download = 0
     @objc dynamic var speed_upload = 0
 }

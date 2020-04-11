@@ -26,7 +26,7 @@ class LoginViewController: DSDownloadViewController {
     // Mark  : Private
     
     private func connect() {
-        SynologySwift.login(quickConnectid: DSDownloadConstants.quickConnectId, login: DSDownloadConstants.quickConnectLogin, password: DSDownloadConstants.quickConnectPassword, useDefaultCacheApis: true) { (result) in
+        SynologySwift.login(quickConnectid: "quickID", sessionType: "FileStation", login: "login", password: "password", useDefaultCacheApis: true) { (result) in
             switch result {
             case .success(let data):
                 print("OKKK : \(data)")

@@ -10,6 +10,7 @@ import RealmSwift
 
 
 class VPNProfile: Object {
+    
     @objc dynamic var id = ""
     @objc dynamic var confname = ""
     @objc dynamic var reconnect = false
@@ -17,7 +18,7 @@ class VPNProfile: Object {
     @objc dynamic var uptime = ""
     @objc dynamic var prtl = ""
     @objc dynamic var user = ""
-    @objc dynamic var update_date = DSDownloadModel.getCurrentDateTime()
+    @objc dynamic var update_date = Date()
     
     override static func primaryKey() -> String? {
         return "id"

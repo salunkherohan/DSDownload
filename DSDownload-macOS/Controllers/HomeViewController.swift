@@ -11,6 +11,14 @@ import RealmSwift
 
 class HomeViewController: NSViewController {
 
+    static func setup(fromLogin: Bool = false) -> HomeViewController {
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let identifier = NSStoryboard.SceneIdentifier("HomeViewController")
+        guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? HomeViewController else {fatalError("HomeViewController not found - Check Main.storyboard")}
+        viewcontroller.launchFromLogin = fromLogin
+        return viewcontroller
+    }
+    
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var progressView: NSProgressIndicator!
     
@@ -27,17 +35,6 @@ class HomeViewController: NSViewController {
     
     @IBOutlet weak var loginName: NSTextField!
     
-    static func setup(fromLogin: Bool = false) -> HomeViewController {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
-        let identifier = NSStoryboard.SceneIdentifier("HomeViewController")
-        guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? HomeViewController else {
-            fatalError("HomeViewController not found - Check Main.storyboard")
-        }
-        viewcontroller.launchFromLogin = fromLogin
-        
-        return viewcontroller
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,7 +48,7 @@ class HomeViewController: NSViewController {
             sessionManager.testReachability(success: {
                 self.initCommonTasks()
             }) {
-                self.finishLogout()
+                self.launchLogout(fromExpiredSession: true)
             }
         } else {
             initCommonTasks()
@@ -75,7 +72,7 @@ class HomeViewController: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(finishLogout(_:)), name: .sessionExpired, object: nil)
     }
     
-    // Mark : Actions
+    // MARK: Actions
     
     @objc func tableViewDoubleClick(_ sender: AnyObject) {
         let task = tasks[tableView.clickedRow]
@@ -153,9 +150,10 @@ class HomeViewController: NSViewController {
         NSMenu.popUpContextMenu(exitContextMenu, with: event, for: sender as! NSView)
     }
     
-    // Mark : Private
+    // MARK: Private
     
     private let tasksManager = TasksManager()
+    private let statisticManager = StatisticManager()
     private let sessionManager = SessionManager()
     private let networkManager = NetworkManager()
     
@@ -166,7 +164,6 @@ class HomeViewController: NSViewController {
     
     private var refreshVPNTimer: Timer?
     private var refreshTasksTimer: Timer?
-    private var refreshStatisticsTimer: Timer?
     
     private var tasks = List<Task>() {
         didSet {
@@ -175,46 +172,28 @@ class HomeViewController: NSViewController {
     }
     
     private func initCommonTasks() {
-        /* Setup timers */
-        setupRefreshDataTimers()
-        
         /* Refresh immediatly */
         refreshVPN()
-        resfreshStatistics()
         refreshTasks() {
             self.endLoading()
         }
     }
     
-    private func setupRefreshDataTimers() {
-        let haActiveTasks = tasksManager.haActiveTasks()
+    private func setupVPNRefreshTimer() {
         let vpnInterval = DSDownloadConstants.VPNIntervalRefresh
-        let taskInterval = haActiveTasks ? DSDownloadConstants.tasksIntervalRefreshForActive : DSDownloadConstants.tasksIntervalRefreshForInActive
-        let statInterval = haActiveTasks ? DSDownloadConstants.statisticsIntervalRefreshForActive : DSDownloadConstants.statisticsIntervalRefreshForInActive
-        
-        /* Setup VPN timer if necessary */
-        if (refreshVPNTimer?.timeInterval ?? 0) != vpnInterval {
-            refreshVPNTimer?.invalidate()
-            refreshVPNTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(vpnInterval), repeats: true, block: { (timer) in
-                self.refreshVPN()
-            })
-        }
-        
-        /* Setup task timer if necessary */
-        if (refreshTasksTimer?.timeInterval ?? 0) != taskInterval {
-            refreshTasksTimer?.invalidate()
-            refreshTasksTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(taskInterval), repeats: true, block: { (timer) in
-                self.refreshTasks()
-            })
-        }
-        
-        /* Setup statistics timer if necessary */
-        if (refreshStatisticsTimer?.timeInterval ?? 0) != statInterval {
-            refreshStatisticsTimer?.invalidate()
-            refreshStatisticsTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(statInterval), repeats: true, block: { (timer) in
-                self.resfreshStatistics()
-            })
-        }
+        refreshVPNTimer?.invalidate()
+        refreshVPNTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(vpnInterval), repeats: false, block: { [weak self] (timer) in
+            self?.refreshVPN()
+        })
+    }
+    
+    private func setupTasksRefreshTimer() {
+        let hasActiveTasks = tasksManager.haActiveTasks()
+        let taskInterval = hasActiveTasks ? DSDownloadConstants.tasksIntervalRefreshForActive : DSDownloadConstants.tasksIntervalRefreshForInActive
+        refreshTasksTimer?.invalidate()
+        refreshTasksTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(taskInterval), repeats: false, block: { [weak self] (timer) in
+            self?.refreshTasks()
+        })
     }
     
     private func configureMenus() {
@@ -224,39 +203,40 @@ class HomeViewController: NSViewController {
         
         let logoutItem = NSMenuItem(title: "Logout", action: #selector(willLogout(_:)), keyEquivalent: "l")
         let exitAppItem = NSMenuItem(title: "Exit", action: #selector(willExit(_:)), keyEquivalent: "q")
-        let settingsAppItem = NSMenuItem(title: "Settings", action: #selector(showSettings(_:)), keyEquivalent: ",")
         exitContextMenu.addItem(logoutItem)
         exitContextMenu.addItem(exitAppItem)
-        exitContextMenu.addItem(settingsAppItem)
     }
     
     private func refreshVPN(completion: (() -> ())? = nil) {
         networkManager.vpn({ (profiles) in
             let connectedProfiles = profiles.filter { $0.status == "connected" }
             self.shieldIndicator.image = #imageLiteral(resourceName: "shield_ico.png").tint(color: connectedProfiles.count > 0 ? .green : .red)
+            self.setupVPNRefreshTimer()
         }, error: {
+            self.setupVPNRefreshTimer()
             self.shieldIndicator.image = #imageLiteral(resourceName: "shield_ico.png").tint(color: .red)
         })
     }
     
     private func refreshTasks(completion: (() -> ())? = nil) {
+        resfreshStatistics()
         tasksManager.all({ (tasks) in
             self.tasks = tasks
-            self.setupRefreshDataTimers()
+            self.setupTasksRefreshTimer()
             completion?()
         }, error: {
+            self.setupTasksRefreshTimer()
             self.showErrorMessage("An error occured. Please retry later.")
             completion?()
         })
     }
     
     private func resfreshStatistics() {
-        StatisticManager().all({ (stats) in
+        statisticManager.all({ (stats) in
             let up = DSDownloadTools.convertBytes(stats.speed_upload)
             let down = DSDownloadTools.convertBytes(stats.speed_download)
             self.downStatisticField.stringValue = "↓ \(down) mb/s"
             self.upStatisticField.stringValue = "↑ \(up) mb/s"
-            self.setupRefreshDataTimers()
         }, error: {
             self.downStatisticField.stringValue = "↓ N/A"
             self.upStatisticField.stringValue = "↑ N/A"
@@ -278,11 +258,7 @@ class HomeViewController: NSViewController {
         NSApplication.shared.terminate(self)
     }
     
-    @objc private func showSettings(_ sender: AnyObject) {
-        print("OK show settings")
-    }
-    
-    // Mark : Textfield
+    // MARK: Textfield
     
     private func hideAddTaskField() {
         addTaskField.isHidden = true
@@ -298,7 +274,7 @@ class HomeViewController: NSViewController {
         addTaskField.window?.makeFirstResponder(addTaskField)
     }
     
-    // Mark : Loading
+    // MARK: Loading
     
     private func startLoading() {
         tableView.deselectAll(nil)
@@ -321,7 +297,7 @@ class HomeViewController: NSViewController {
         progressView.stopAnimation(nil)
     }
     
-    // Mark : Error message
+    // MARK: Error message
     
     private func showErrorMessage(_ message: String) {
         errorMessage.stringValue = message
@@ -338,13 +314,17 @@ class HomeViewController: NSViewController {
         bottomView.isHidden = false
     }
     
-    // Mark : Logout
+    // MARK: Logout
     
     @objc private func finishLogout(_ sender: AnyObject? = nil) {
+        launchLogout()
+    }
+    
+    private func launchLogout(fromExpiredSession: Bool = false) {
         refreshTasksTimer?.invalidate()
-        refreshStatisticsTimer?.invalidate()
+        refreshVPNTimer?.invalidate()
         NotificationCenter.default.removeObserver(self)
-        SessionService.shared.reset()
+        SessionService.shared.reset(automatic: fromExpiredSession)
         DispatchQueue.main.async {
             AppDelegate.shared.popover.contentViewController = LoginViewController.setup()
             AppDelegate.shared.popover.contentSize = NSSize(width: 300, height: 270)

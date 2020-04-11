@@ -39,19 +39,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popover.animates = false
         
         eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
-            if let strongSelf = self, strongSelf.popover.isShown {
-                strongSelf.closePopover(sender: event)
-            }
+            guard let strongSelf = self, strongSelf.popover.isShown else {return}
+            self?.closePopover(sender: event)
         }
-    }
-    
-    @IBAction func showPreferences(_ sender: Any) {
-        if preferencesController == nil {
-            preferencesController = NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as? PreferencesWindowViewController
-        }
-        
-        guard let pwc = preferencesController else {return}
-        pwc.showWindow(sender)
     }
     
     // MARK: Popover
@@ -76,8 +66,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         eventMonitor?.stop()
     }
     
-    // MARK: Private
     
-    var preferencesController: NSWindowController?
 }
 

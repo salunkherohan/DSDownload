@@ -40,8 +40,10 @@ class TasksManager: DSDownloadManager {
             "version": 1
         ]
         
-        DSDownloadNetwork().performRequest(.get, path: "DownloadStation/task.cgi", params: params, success: { (results) in
-            self.saveResults(results, callback: success)
+        DSDownloadNetwork().performRequest(.get, path: "DownloadStation/task.cgi", params: params, success: { [weak self] (results) in
+            guard let strongSelf = self else {return}
+            let tasks = strongSelf.save(results)
+            DispatchQueue.main.async {success(tasks)}
         }) { (e) in
             error()
         }
@@ -59,7 +61,7 @@ class TasksManager: DSDownloadManager {
         ]
         
         DSDownloadNetwork().performRequest(.get, path: "DownloadStation/task.cgi", params: params, success: { (results) in
-            success()
+            DispatchQueue.main.async {success()}
         }) { (error) in
             // Error
         }
@@ -75,7 +77,7 @@ class TasksManager: DSDownloadManager {
         ]
         
         DSDownloadNetwork().performRequest(.get, path: "DownloadStation/task.cgi", params: params, success: { (results) in
-            success()
+            DispatchQueue.main.async {success()}
         }) { (error) in
             // Error
         }
@@ -91,7 +93,7 @@ class TasksManager: DSDownloadManager {
         ]
         
         DSDownloadNetwork().performRequest(.get, path: "DownloadStation/task.cgi", params: params, success: { (results) in
-            success()
+            DispatchQueue.main.async {success()}
         }) { (error) in
             // Error
         }
@@ -107,30 +109,30 @@ class TasksManager: DSDownloadManager {
         ]
         
         DSDownloadNetwork().performRequest(.post, path: "DownloadStation/task.cgi", params: params, encoding: URLEncoding(destination: .httpBody), success: { (results) in
-            success()
+            DispatchQueue.main.async {success()}
         }) { (e) in
             error(e)
         }
     }
     
-    // Mark : Tools
+    // MARK: Tools
     
     func haActiveTasks() -> Bool {
         let stopStates = [Task.StatusType.paused.rawValue, Task.StatusType.finished.rawValue, Task.StatusType.seeding.rawValue, Task.StatusType.error.rawValue]
         let realm = try! Realm()
-        let taks = realm.objects(Task.self).filter("NOT (status IN %@)", stopStates)
-        return taks.count > 0
+        let tasks = realm.objects(Task.self).filter("NOT (status IN %@)", stopStates)
+        return !tasks.isEmpty
     }
     
-    // Mark : Private
+    // MARK: Private
     
-    private func saveResults(_ results: JSON, callback: (List<Task>) -> ()) {
+    private func save(_ results: JSON) -> List<Task> {
         let realm = try! Realm()
         var tasks = List<Task>()
         
         guard let tasksData = results.dictionary?["data"]?["tasks"].array
-        else {return}
-        
+        else {return tasks}
+                
         // Delete all
         try! realm.write {
             realm.delete(realm.objects(Task.self))
@@ -138,15 +140,15 @@ class TasksManager: DSDownloadManager {
         }
         
         // Save tasks
-        for task in tasksData {
-            let t = Task(value: task.object)
-            try! realm.write {
-                realm.add(t, update: true)
+        try! realm.write {
+            for task in tasksData {
+                let t = Task(value: task.object)
+                realm.add(t)
+                tasks.append(t)
             }
-            tasks.append(t)
         }
         tasks.reverse()
-        callback(tasks)
+        return tasks
     }
     
 }

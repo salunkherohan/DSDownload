@@ -8,12 +8,9 @@
 import Cocoa
 
 
-public class EventMonitor {
-    private var monitor: Any?
-    private let mask: NSEvent.EventTypeMask
-    private let handler: (NSEvent?) -> Void
+class EventMonitor {
     
-    public init(mask: NSEvent.EventTypeMask, handler: @escaping (NSEvent?) -> Void) {
+    init(mask: NSEvent.EventTypeMask, handler: @escaping (NSEvent?) -> Void) {
         self.mask = mask
         self.handler = handler
     }
@@ -22,14 +19,21 @@ public class EventMonitor {
         stop()
     }
     
-    public func start() {
+    func start() {
         monitor = NSEvent.addGlobalMonitorForEvents(matching: mask, handler: handler)
     }
     
-    public func stop() {
+    func stop() {
         if monitor != nil {
             NSEvent.removeMonitor(monitor!)
             monitor = nil
         }
     }
+    
+    // MARK: Private
+    
+    private let mask: NSEvent.EventTypeMask
+    private let handler: (NSEvent?) -> Void
+    
+    private var monitor: Any?
 }

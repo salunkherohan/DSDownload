@@ -29,22 +29,25 @@ class NetworkManager: DSDownloadManager {
             "compound": "[{\"api\":\"SYNO.Entry.Request\",\"method\":\"request\",\"version\":1,\"stopwhenerror\":false,\"compound\":[{\"api\":\"SYNO.Core.Network.VPN.PPTP\",\"method\":\"list\",\"version\":1,\"additional\":[\"status\"]},{\"api\":\"SYNO.Core.Network.VPN.OpenVPNWithConf\",\"method\":\"list\",\"version\":1,\"additional\":[\"status\"]},{\"api\":\"SYNO.Core.Network.VPN.OpenVPN\",\"method\":\"list\",\"version\":1,\"additional\":[\"status\"]},{\"api\":\"SYNO.Core.Network.VPN.L2TP\",\"method\":\"list\",\"version\":1,\"additional\":[\"status\"]}]}]"
         ]
         
-        DSDownloadNetwork().performRequest(.post, path: "entry.cgi", params: params, encoding: URLEncoding.httpBody, success: { (results) in
-            self.saveResults(results, callback: { (profiles) in
+        DSDownloadNetwork().performRequest(.post, path: "entry.cgi", params: params, encoding: URLEncoding.httpBody, success: { [weak self] (results) in
+            guard let strongSelf = self else {return}
+            let profiles = strongSelf.save(results)
+            DispatchQueue.main.async {
                 success(profiles)
-            })
+            }
         }) { (e) in
             error()
         }
     }
     
+    // MARK: Private
     
-    private func saveResults(_ results: JSON, callback: (List<VPNProfile>) -> ()) {
+    private func save(_ results: JSON) -> List<VPNProfile> {
         let realm = try! Realm()
         let profiles = List<VPNProfile>()
         
         guard let vpnProfiles = results.dictionary?["data"]?["result"].array?.first?.dictionary?["data"]?["result"].array
-        else {callback(profiles);return}
+        else {return profiles}
         
         // Save VPN profiles
         for profile in vpnProfiles {
@@ -53,11 +56,11 @@ class NetworkManager: DSDownloadManager {
             else {continue}
             let p = VPNProfile(value: pDatas.object)
             try! realm.write {
-                realm.add(p, update: true)
+                realm.add(p, update: .all)
             }
             profiles.append(p)
         }
         
-        callback(profiles)
+        return profiles
     }
 }
