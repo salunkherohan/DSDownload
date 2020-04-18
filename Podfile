@@ -17,6 +17,9 @@ end
 target 'DSDownload-macOS' do
   platform :osx, '10.14'
   pod 'RealmSwift'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxRealm'
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'ObjectMapper'

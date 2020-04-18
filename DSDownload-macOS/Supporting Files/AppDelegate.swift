@@ -19,7 +19,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     override init() {
         super.init()
-        
         assert(AppDelegate.shared == nil)
         AppDelegate.shared = self
     }
@@ -29,16 +28,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        /* Core init */
-        DSDownloadInit.launch()
+        // Initialization
+        DSInit.configure()
         
-        /* Create menu button */
+        // Create menu button
         if let button = statusItem.button {
             button.image = NSImage(imageLiteralResourceName: "img_status_bar_ico")
             button.action = #selector(AppDelegate.togglePopover(_:))
         }
         
-        popover.contentViewController = SessionService.shared.isConnected && !DSDownloadConstants.forceLogin ? HomeViewController.setup() : LoginViewController.setup()
+        let sessionManager = SessionManager.shared
+        popover.contentViewController = sessionManager.state.value == SessionManager.State.pendingValidation.rawValue || sessionManager.isConnected ? HomeViewController.setup() : LoginViewController.setup()
         popover.behavior = .transient
         popover.animates = false
         
@@ -49,8 +49,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func handleOpenURL(event: NSAppleEventDescriptor, reply: NSAppleEventDescriptor) {
-        guard let urlString = event.paramDescriptor(forKeyword: keyDirectObject)?.stringValue, let url = URL(string: urlString) else {return}
-        // Do something with URL!
+        guard let magnet = event.paramDescriptor(forKeyword: keyDirectObject)?.stringValue else {return}
+        TaskManager.shared.add(magnet)
     }
     
     // MARK: Popover
