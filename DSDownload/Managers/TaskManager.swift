@@ -40,7 +40,6 @@ class TaskManager {
     // MARK: Helpers
     
     func add(_ magnet: String, completion: ((_ result: Bool) -> ())? = nil) {
-        guard sessionManager.isConnected else {completion?(false); return}
         let params: [String: Any] = [
             "api": "SYNO.DownloadStation.Task",
             "method": "create",
@@ -51,7 +50,6 @@ class TaskManager {
     }
     
     func delete(_ tasks: [Task], completion: ((_ result: Bool) -> ())? = nil) {
-        guard sessionManager.isConnected else {completion?(false); return}
         guard tasks.count > 0 else {completion?(false); return}
         
         let params: [String: Any] = [
@@ -65,7 +63,6 @@ class TaskManager {
     }
     
     func pause(_ task: Task, completion: ((_ result: Bool) -> ())? = nil) {
-        guard sessionManager.isConnected else {completion?(false); return}
         let params: [String: Any] = [
             "api": "SYNO.DownloadStation.Task",
             "method": "pause",
@@ -76,7 +73,6 @@ class TaskManager {
     }
     
     func resume(_ task: Task, completion: ((_ result: Bool) -> ())? = nil) {
-        guard sessionManager.isConnected else {completion?(false); return}
         let params: [String: Any] = [
             "api": "SYNO.DownloadStation.Task",
             "method": "resume",
@@ -99,9 +95,11 @@ class TaskManager {
     private func configure() {
         retrieverOperationQueue.name = "Retriever operations queue"
         retrieverOperationQueue.maxConcurrentOperationCount = 1
+        retrieverOperationQueue.isSuspended = true
         
         actionOperationQueue.name = "Action operations queue"
         actionOperationQueue.maxConcurrentOperationCount = 1
+        actionOperationQueue.isSuspended = true
         
         configureObservers()
     }
@@ -114,16 +112,23 @@ class TaskManager {
     }
     
     private func sessionDidChange() {
-        // Clear & reset current operations
-        retrieverOperationQueue.cancelAllOperations()
-        actionOperationQueue.cancelAllOperations()
-        
         if sessionManager.isConnected {
-            configureRetriever(delay: 0)
+            // Relaunch queues
+            retrieverOperationQueue.isSuspended = false
+            actionOperationQueue.isSuspended = false
+            if actionOperationQueue.operations.isEmpty {configureRetriever(delay: 0)}
+            
+            // Update state
             let isFirstRetrieve = dataManager.realmContent.object(ofType: User.self, forPrimaryKey: 0)?.taskUpdateDate == nil
-            state.accept(isFirstRetrieve ? State.actionRunning.rawValue : State.running.rawValue)
+            state.accept(isFirstRetrieve || !actionOperationQueue.operations.isEmpty ? State.actionRunning.rawValue : State.running.rawValue)
         } else {
             state.accept(State.none.rawValue)
+            
+            // Stop & clear queues
+            retrieverOperationQueue.isSuspended = true
+            retrieverOperationQueue.cancelAllOperations()
+            actionOperationQueue.isSuspended = true
+            actionOperationQueue.cancelAllOperations()
         }
     }
     
