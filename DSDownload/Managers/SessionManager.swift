@@ -77,6 +77,8 @@ class SessionManager {
     private let keychainServiceSession = "dsdownload-session"
     private let keychainServiceLoginCredentials = "dsdownload-login-credentials"
     
+    private let dataManager = DBManager.shared
+    
     private func configure() {
         keychainService.accessGroup = keychainServiceName
         restoreSession()
@@ -98,6 +100,14 @@ class SessionManager {
         
         // Save credentials
         keychainService.set(credentialsData, forKey: keychainServiceLoginCredentials)
+        
+        // Reset all datas & create new user if necessary
+        if loginCredentials == nil || loginCredentials?.quickId != credentials?.quickId || loginCredentials?.login != credentials?.login {
+            try? dataManager.realmContent.safeWrite {
+                dataManager.realmContent.deleteAll()
+                dataManager.realmContent.add(User(value: ["login": credentials?.login ?? ""]))
+            }
+        }
         
         self.session = session
         self.loginCredentials = credentials

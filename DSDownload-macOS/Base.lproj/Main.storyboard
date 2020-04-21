@@ -1028,7 +1028,7 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="shield_ico" id="CZl-Yl-Gsm"/>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tHg-my-4zg">
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tHg-my-4zg">
                                 <rect key="frame" x="158" y="197" width="74" height="13"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="N97-Mq-qvg"/>
@@ -1049,7 +1049,7 @@
                                     <action selector="addTaskAction:" target="yXC-ls-LqJ" id="K09-VS-fBR"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R2J-UE-T15">
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R2J-UE-T15">
                                 <rect key="frame" x="223" y="197" width="74" height="13"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="XkX-4t-ECY"/>

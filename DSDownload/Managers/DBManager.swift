@@ -17,6 +17,7 @@ class DBManager {
     // MARK: DB composition
     
     static let contentDBObjectTypes = [
+        User.self,
         Task.self,
         TaskExtra.self,
         TaskAdditional.self,

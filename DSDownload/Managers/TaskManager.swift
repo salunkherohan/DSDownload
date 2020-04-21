@@ -120,14 +120,9 @@ class TaskManager {
         
         if sessionManager.isConnected {
             configureRetriever(delay: 0)
-            state.accept(State.running.rawValue)
+            let isFirstRetrieve = dataManager.realmContent.object(ofType: User.self, forPrimaryKey: 0)?.taskUpdateDate == nil
+            state.accept(isFirstRetrieve ? State.actionRunning.rawValue : State.running.rawValue)
         } else {
-            try? dataManager.realmContent.safeWrite {
-                // Remove existing tasks
-                [Task.self, TaskExtra.self, TaskAdditional.self, TaskAdditionalDetail.self, TaskAdditionalTransfer.self].forEach({
-                    dataManager.realmContent.delete(dataManager.realmContent.objects($0))
-                })
-            }
             state.accept(State.none.rawValue)
         }
     }
@@ -170,6 +165,9 @@ class TaskManager {
                         task.updateDate = Date()
                         realm.add(task, update: .all)
                     }
+                    
+                    // Save update date
+                    realm.object(ofType: User.self, forPrimaryKey: 0)?.taskUpdateDate = Date()
                 }
             case .failure:
                 (/* Do something ? */)
