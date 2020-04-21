@@ -7,20 +7,36 @@
 
 import Foundation
 import RealmSwift
+import ObjectMapper
+import ObjectMapperAdditions
 
 
-class VPNProfile: Object {
+class VPNProfile: Object, Mappable {
     
-    @objc dynamic var id = ""
-    @objc dynamic var confname = ""
-    @objc dynamic var reconnect = false
-    @objc dynamic var status = ""
-    @objc dynamic var uptime = ""
-    @objc dynamic var prtl = ""
-    @objc dynamic var user = ""
-    @objc dynamic var update_date = Date()
+    @objc dynamic var id: String = ""
+    @objc dynamic var configurationName: String = ""
+    @objc dynamic var reconnect: Bool = false
+    @objc dynamic var status: String = ""
+    @objc dynamic var uptime: String = ""
+    @objc dynamic var prtl: String = ""
+    @objc dynamic var user: String = ""
+    @objc dynamic var updateDate = Date()
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        configurationName <- map["confname"]
+        reconnect <- (map["reconnect"], BoolTransform())
+        status <- map["status"]
+        uptime <- map["uptime"]
+        prtl <- map["prtl"]
+        user <- map["user"]
     }
 }

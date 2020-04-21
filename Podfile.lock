@@ -13,6 +13,15 @@ PODS:
   - Realm/Headers (4.4.0)
   - RealmSwift (4.4.0):
     - Realm (= 4.4.0)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRealm (2.0.0):
+    - RealmSwift (~> 4.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
   - SwiftyJSON (5.0.0)
   - SynologySwift (0.2)
 
@@ -22,6 +31,9 @@ DEPENDENCIES:
   - ObjectMapper
   - ObjectMapperAdditions/Realm
   - RealmSwift
+  - RxCocoa
+  - RxRealm
+  - RxSwift
   - SwiftyJSON
   - SynologySwift
 
@@ -33,6 +45,10 @@ SPEC REPOS:
     - ObjectMapperAdditions
     - Realm
     - RealmSwift
+    - RxCocoa
+    - RxRealm
+    - RxRelay
+    - RxSwift
     - SwiftyJSON
     - SynologySwift
 
@@ -43,9 +59,13 @@ SPEC CHECKSUMS:
   ObjectMapperAdditions: 923fa7cdc45a7937e08fea8c715d18fc3604b122
   Realm: e125f464884cda953ebefe70c671b75b03b81b9b
   RealmSwift: 33656a42bd300959a081fc13347376bc478071af
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRealm: 900f5c7e6f0a2d6527b56eaf7283f3035ec1e8ba
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   SynologySwift: 4341c4342b533adc4fa8abee0852b7a8f4c25ec6
 
-PODFILE CHECKSUM: 24686e41c3f5d96040917f2d9f663633d44f50a4
+PODFILE CHECKSUM: cc33e5f58cf52e9cd2e91e6593643411acc4b28f
 
 COCOAPODS: 1.9.0
