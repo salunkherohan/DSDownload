@@ -1,15 +1,13 @@
 //
-//  DSDownloadManager.swift
+//  Notification+Extensions.swift
 //  DSDownload
 //
-//  Created by Thomas le Gravier on 01/02/2019.
+//  Created by Thomas LE GRAVIER on 19/04/2020.
 //
 
 import Foundation
 
-/// Parent class for all managers
-class DSDownloadManager {}
-
 extension Notification.Name {
+    
     static let sessionExpired = Notification.Name("session_expired")
 }

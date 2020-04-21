@@ -1,5 +1,5 @@
 //
-//  DSDownloadNetwork.swift
+//  NetworkManager.swift
 //  DSDownload
 //
 //  Created by Thomas le Gravier on 01/02/2019.
@@ -8,32 +8,20 @@
 import Alamofire
 import SwiftyJSON
 
-class DSDownloadNetwork: NSObject {
+class Network {
     
-    fileprivate let domainNetwork = "com.dsdownload"
-    
-    typealias successBlock = (_ success: JSON) -> ()
-    typealias defaultSuccessBlock = (_ success: String) -> ()
-    typealias errorBlock = (_ errorResult: NSError) -> ()
-
-    func performRequest(_ action: HTTPMethod, path: String, params: [String: Any] = [String: String](), encoding: ParameterEncoding = URLEncoding(destination: .queryString), success: successBlock? = nil, error: errorBlock? = nil) {
+    func performRequest(_ action: HTTPMethod, path: String, params: [String: Any] = [String: String](), encoding: ParameterEncoding = URLEncoding(destination: .queryString), success: ((_ success: JSON) -> ())? = nil, error: ((_ errorResult: NSError) -> ())? = nil) {
         
-        guard let session = SessionService.shared.session,
-              let dsInfos = session.dsInfos
-        else {
-            error?(self.errorFormated("API error", description: "An error occured", code: -1))
-            return
-        }
+        guard let sid = sessionManager.session?.sid, let dsInfos = sessionManager.session?.dsInfos else {error?(errorFormated("Session error", description: "Sid or DS infos missing", code: -1)); return}
         
         let fullPath = "http://\(dsInfos.host):\(dsInfos.port)/webapi/\(path)"
-        
         let headers = HTTPHeaders(["Accept": "application/json"])
         
-        /* Add sid in params */
+        // Add sid in params
         var params = params
-        params["_sid"] = session.sid
+        params["_sid"] = sid
         
-        if DSDownloadConstants.networkLogs {
+        if Constants.networkLogs {
             print("Network headers : \(headers)")
             print("Network api call : \(fullPath)")
             print("Network params : \(params)")
@@ -43,7 +31,6 @@ class DSDownloadNetwork: NSObject {
             .responseJSON { response in
                 switch response.result {
                 case .success(let result):
-                    // Construct JSON result
                     var json = JSON([:])
                     if let jsonDictionary = result as? [String: Any] {
                         if let successData = jsonDictionary["success"] as? Bool, successData == false {
@@ -62,7 +49,6 @@ class DSDownloadNetwork: NSObject {
                     }
                     success?(json)
                 case .failure(let e):
-                    
                     error?(self.errorFormated("API error", description: "\("An error occured") [\(e.localizedDescription)]", code: response.response?.statusCode ?? 0))
                 }
         }
@@ -70,16 +56,16 @@ class DSDownloadNetwork: NSObject {
     
     // MARK: Private
     
+    private let domainNetwork = "com.dsdownload"
+    
+    private let sessionManager = SessionManager.shared
+    
     private func errorFormated(_ reason: String, description: String, code: Int) -> NSError {
-        let dict : [String: AnyObject] = [
+        let dict: [String: AnyObject] = [
             NSLocalizedDescriptionKey: description as AnyObject,
-            NSLocalizedFailureReasonErrorKey : reason as AnyObject,
-            NSUnderlyingErrorKey : reason as AnyObject
+            NSLocalizedFailureReasonErrorKey: reason as AnyObject,
+            NSUnderlyingErrorKey: reason as AnyObject
         ]
-        let error : NSError = NSError(domain: domainNetwork,
-                                      code: code,
-                                      userInfo:dict)
-        
-        return error
+        return NSError(domain: domainNetwork, code: code, userInfo: dict)
     }
 }

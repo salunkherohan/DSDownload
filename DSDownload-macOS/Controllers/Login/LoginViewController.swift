@@ -35,19 +35,20 @@ class LoginViewController: NSViewController {
         progressView.startAnimation(nil)
         confirmButton.isEnabled = false
         errorLabel.stringValue = ""
-        SessionManager().login(with: quickConnectIdField.stringValue, login: loginField.stringValue, passwd: passwordField.stringValue) { (result) in
+        sessionManager.login(with: quickConnectIdField.stringValue, login: loginField.stringValue, passwd: passwordField.stringValue) { (result) in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
-                    AppDelegate.shared.popover.contentViewController = HomeViewController.setup(fromLogin: true)
-                    AppDelegate.shared.popover.contentSize = NSSize(width: 500, height: 170)
+                    AppDelegate.shared.popover.contentViewController = HomeViewController.setup()
+                    AppDelegate.shared.popover.contentSize = NSSize(width: 500, height: 220)
                 }
             case .failure(let error):
-                var errorMessage = "Unknown error"
+                let errorMessage: String
                 switch error {
                 case .other(let message):
                     errorMessage = message
-                case .requestError(_): ()
+                case .requestError:
+                    errorMessage = "Request error"
                 }
                 DispatchQueue.main.async {
                     self.errorLabel.stringValue = errorMessage
@@ -68,11 +69,12 @@ class LoginViewController: NSViewController {
     }
     
     @objc private func willExit(_ sender: AnyObject) {
-        /* Shutdown app */
         NSApplication.shared.terminate(self)
     }
     
     // MARK: Private
+    
+    private let sessionManager = SessionManager.shared
     
     private let exitContextMenu = NSMenu()
     
@@ -80,10 +82,10 @@ class LoginViewController: NSViewController {
         confirmButton.wantsLayer = true
         confirmButton.layer?.backgroundColor = NSColor(calibratedRed: 0.20, green: 0.44, blue: 0.58, alpha: 1.0).cgColor
     
-        if let loginDetails = SessionService.shared.loginDetails {
-            quickConnectIdField.stringValue = loginDetails.quickId
-            loginField.stringValue = loginDetails.login
-            passwordField.stringValue = loginDetails.password
+        if let loginCredentials = sessionManager.loginCredentials {
+            quickConnectIdField.stringValue = loginCredentials.quickId
+            loginField.stringValue = loginCredentials.login
+            passwordField.stringValue = loginCredentials.password
         }
     }
     

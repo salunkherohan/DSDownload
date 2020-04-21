@@ -7,109 +7,151 @@
 
 import Foundation
 import RealmSwift
+import ObjectMapper
 
-
-class Task: Object {
+class Task: Object, Mappable {
     
     enum StatusType: String {
-        case waiting = "waiting"
-        case downloading = "downloading"
-        case paused = "paused"
-        case finishing = "finishing"
-        case finished = "finished"
-        case hash_checking = "hash checking"
-        case seeding = "seeding"
-        case filehosting_waiting = "filehosting waiting"
-        case extracting = "extracting"
-        case error = "error"
+        case waiting
+        case downloading
+        case paused
+        case finishing
+        case finished
+        case hashChecking = "hash checking"
+        case seeding
+        case filehostingWaiting = "filehosting waiting"
+        case extracting
+        case error
     }
     
-    @objc dynamic var id = ""
-    @objc dynamic var title = ""
-    @objc dynamic var size = 0
-    @objc dynamic var status = ""
-    @objc dynamic var status_extra: TaskExtra? = nil
-    @objc dynamic var type = ""
-    @objc dynamic var username = ""
-    @objc dynamic var additional: TaskAdditional? = nil
-    @objc dynamic var update_date = Date()
+    @objc dynamic var id: String = ""
+    @objc dynamic var title: String = ""
+    @objc dynamic var type: String = ""
+    @objc dynamic var username: String = ""
+    @objc dynamic var size: Int = 0
+    @objc dynamic var status: String = ""
+    @objc dynamic var extra: TaskExtra?
+    @objc dynamic var additional: TaskAdditional?
+    @objc dynamic var updateDate = Date()
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
-    // MARK: Tools
-    
-    /* Return speed on download or upload for task.
-     * Priority on download speed.
-     * Return empty string if task is not active.
-     */
-    var speed: String {
-        guard let additional = additional,
-            let transfer = additional.transfer,
-            transfer.speed_upload > 0 || transfer.speed_download > 0
-            else {return ""}
-        
-        let up = DSDownloadTools.convertBytes(transfer.speed_upload)
-        let down = DSDownloadTools.convertBytes(transfer.speed_download)
-        
-        return transfer.speed_download > 0 ? "↓ \(down) mb/s" : "↑ \(up) mb/s"
+    var speed: String? {
+        guard let additional = additional, let transfer = additional.transfer, transfer.speedDownload > 0 || transfer.speedDownload > 0 else {return nil}
+        return transfer.speedDownload > 0 ? "↓ \(Tools.convertBytes(transfer.speedDownload)) mb/s" : "↑ \(Tools.convertBytes(transfer.speedUpload)) mb/s"
     }
     
-    /* Return progress in % of a task. */
-    var progress: String {
-        guard let additional = additional else {return ""}
-        
-        if  additional.detail?.completed_time ?? 0 > 0 {
-            return "100%"
-        } else if let downloadSize = additional.transfer?.size_downloaded {
-            if size > 0 && downloadSize == size {
-                return "100%"
-            } else if downloadSize > 0 && size > 0 {
-                let progress = (Double(downloadSize)/Double(size))*100
-                return "\(String(format: "%.2f", progress))%"
-            } else {
-                return "0%"
-            }
-        }
-        return ""
+    var progress: Double? {
+        guard let additional = additional else {return nil}
+        guard additional.detail?.completedTime ?? 0 == 0 else {return 1}
+        guard let downloadSize = additional.transfer?.sizeDownloaded else {return nil}
+        return size > 0 && downloadSize >= size ? 1 : downloadSize > 0 && size > 0 ? min(1, max(0, Double(downloadSize)/Double(size))) : 0
     }
     
-    /* Return size for task in GB. */
-    var sizeToString: String {
-        return size <= 0 ? "N/A" : DSDownloadTools.convertBytes(size, unit: .useGB)
+    var sizeDescription: String {
+        return size <= 0 ? "N/A" : Tools.convertBytes(size, unit: .useGB)
+    }
+    
+    var createTime: Int {
+        return additional?.detail?.createTime ?? 0
+    }
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        title <- map["title"]
+        type <- map["type"]
+        username <- map["username"]
+        size <- map["size"]
+        status <- map["status"]
+        extra <- map["status_extra"]
+        additional <- map["additional"]
     }
 }
 
-class TaskExtra: Object {
-    @objc dynamic var error_detail = ""
+class TaskExtra: Object, Mappable {
+    
+    @objc dynamic var errorDetail: String = ""
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        errorDetail <- map["error_detail"]
+    }
 }
 
-class TaskAdditional: Object {
-    @objc dynamic var detail: TaskAdditionalDetail? = nil
-    @objc dynamic var transfer: TaskAdditionalTransfer? = nil
+class TaskAdditional: Object, Mappable {
+    
+    @objc dynamic var detail: TaskAdditionalDetail?
+    @objc dynamic var transfer: TaskAdditionalTransfer?
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        detail <- map["detail"]
+        transfer <- map["transfer"]
+    }
 }
 
-/* Task Additional infos */
-
-class TaskAdditionalDetail: Object {
-    @objc dynamic var destination = ""
-    @objc dynamic var uri = ""
-    @objc dynamic var create_time = 0
-    @objc dynamic var started_time = 0
-    @objc dynamic var completed_time = 0
-    @objc dynamic var priority: String? = nil
-    @objc dynamic var total_peers = 0
-    @objc dynamic var connected_leechers = 0
-    @objc dynamic var connected_peers = 0
-    @objc dynamic var connected_seeders = 0
-    @objc dynamic var waiting_seconds = 0
+class TaskAdditionalDetail: Object, Mappable {
+    
+    @objc dynamic var destination: String = ""
+    @objc dynamic var uri: String = ""
+    @objc dynamic var createTime: Int = 0
+    @objc dynamic var startedTime: Int = 0
+    @objc dynamic var completedTime: Int = 0
+    @objc dynamic var priority: String?
+    @objc dynamic var peers: Int = 0
+    @objc dynamic var connectedLeechers: Int = 0
+    @objc dynamic var connectedPeers: Int = 0
+    @objc dynamic var connectedSeeders: Int = 0
+    @objc dynamic var waitingSeconds: Int = 0
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        destination <- map["destination"]
+        uri <- map["uri"]
+        createTime <- map["create_time"]
+        startedTime <- map["started_time"]
+        completedTime <- map["completed_time"]
+        priority <- map["priority"]
+        peers <- map["total_peers"]
+        connectedLeechers <- map["connected_leechers"]
+        connectedPeers <- map["connected_peers"]
+        connectedSeeders <- map["connected_seeders"]
+        waitingSeconds <- map["waiting_seconds"]
+    }
 }
 
-class TaskAdditionalTransfer: Object {
-    @objc dynamic var downloaded_pieces = 0
-    @objc dynamic var size_downloaded = 0
-    @objc dynamic var size_uploaded = 0
-    @objc dynamic var speed_download = 0
-    @objc dynamic var speed_upload = 0
+class TaskAdditionalTransfer: Object, Mappable {
+    
+    @objc dynamic var downloadedPieces: Int = 0
+    @objc dynamic var sizeDownloaded: Int = 0
+    @objc dynamic var sizeUploaded: Int = 0
+    @objc dynamic var speedDownload: Int = 0
+    @objc dynamic var speedUpload: Int = 0
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        downloadedPieces <- map["downloaded_pieces"]
+        sizeDownloaded <- map["size_downloaded"]
+        sizeUploaded <- map["size_uploaded"]
+        speedDownload <- map["speed_download"]
+        speedUpload <- map["speed_upload"]
+    }
 }
