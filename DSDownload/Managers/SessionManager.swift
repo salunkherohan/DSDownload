@@ -52,10 +52,11 @@ class SessionManager {
         return session.sid != nil && session.dsInfos != nil
     }
     
-    func login(with quickId: String, login: String, passwd: String, completion: ((SynologySwift.Result<SynologySwiftAuth.DSAuthInfos>) -> ())? = nil) {
+    func login(with quickId: String, login: String, passwd: String, rememberIdentInfos: Bool = true, completion: ((SynologySwift.Result<SynologySwiftAuth.DSAuthInfos>) -> ())? = nil) {
         SynologySwift.login(quickConnectid: quickId, sessionType: "DownloadStation", login: login, password: passwd, useDefaultCacheApis: true) { [weak self] (result) in
             switch result {
-            case .success(let session): self?.save(session, credentials: LoginCredentials(quickId: quickId, login: login, password: passwd))
+            case .success(let session):
+                self?.save(session, credentials: LoginCredentials(quickId: quickId, login: login, password: passwd), rememberIdentInfos: rememberIdentInfos)
             case .failure:              (/* Do something ? */)
             }
             completion?(result)
@@ -65,7 +66,7 @@ class SessionManager {
     func logout(completion: ((SynologySwift.Result<Bool>) -> ())? = nil) {
         guard let session = session else {completion?(.success(false)); return}
         SynologySwift.logout(dsAuthInfos: session, sessionType: "DownloadStation") { [weak self] (result) in
-            self?.reset()
+            self?.reset(clearCredentials: false)
             completion?(result)
         }
     }
@@ -73,14 +74,14 @@ class SessionManager {
     // MARK: Private
 
     private let keychainService = KeychainSwift()
-    private let keychainServiceName = "dsdownload-connector"
     private let keychainServiceSession = "dsdownload-session"
     private let keychainServiceLoginCredentials = "dsdownload-login-credentials"
     
     private let dataManager = DBManager.shared
     
     private func configure() {
-        keychainService.accessGroup = keychainServiceName
+        keychainService.synchronizable = true
+        
         restoreSession()
         restoreLogin()
         
@@ -90,16 +91,19 @@ class SessionManager {
         }
     }
     
-    private func save(_ session: SynologySwiftAuth.DSAuthInfos, credentials: LoginCredentials?) {
+    private func save(_ session: SynologySwiftAuth.DSAuthInfos, credentials: LoginCredentials?, rememberIdentInfos: Bool = true) {
         let jsonEncoder = JSONEncoder()
         guard let sessionData = try? jsonEncoder.encode(session) else {return}
         guard let credentialsData = try? jsonEncoder.encode(credentials) else {return}
         
         // Save session
         keychainService.set(sessionData, forKey: keychainServiceSession)
+        keychainService.delete("my key")
         
         // Save credentials
-        keychainService.set(credentialsData, forKey: keychainServiceLoginCredentials)
+        if rememberIdentInfos {
+            keychainService.set(credentialsData, forKey: keychainServiceLoginCredentials)
+        }
         
         // Reset all datas & create new user if necessary
         if loginCredentials == nil || loginCredentials?.quickId != credentials?.quickId || loginCredentials?.login != credentials?.login {
@@ -118,7 +122,7 @@ class SessionManager {
         session = nil
         
         // Clear login credentials on user logout action
-        if clearCredentials == false {
+        if clearCredentials == true {
             keychainService.delete(keychainServiceLoginCredentials)
             loginCredentials = nil
         }
@@ -149,7 +153,7 @@ class SessionManager {
         let jsonDecoder = JSONDecoder()
         guard let loginCredentialsData = keychainService.getData(keychainServiceLoginCredentials),
               let loginCredentials = try? jsonDecoder.decode(LoginCredentials.self, from: loginCredentialsData)
-        else {return}
+        else { return }
         self.loginCredentials = loginCredentials
     }
 }

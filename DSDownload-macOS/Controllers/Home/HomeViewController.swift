@@ -45,6 +45,7 @@ class HomeViewController: NSViewController {
     
     @objc func tableViewDoubleClick(_ sender: AnyObject) {
         let task = tasks[tableView.clickedRow]
+        
         guard [Task.StatusType.finishing.rawValue, Task.StatusType.finished.rawValue, Task.StatusType.error.rawValue].contains(task.status) == false else {return}
 
         if task.status == Task.StatusType.paused.rawValue {

@@ -16,4 +16,17 @@ class Tools {
         formatter.allowedUnits = [unit]
         return formatter.string(fromByteCount: Int64(bytes))
     }
+    
+    static func prettyPrintNumber(_ number: Int) -> String {
+        switch number {
+        case 0..<1024:
+            return "\(number) "
+        case 1_000..<1024*1024:
+            return String(format:"%.1f", Float(number/1024)) + " k"
+        case 1_000_000..<1024*1024*1024:
+            return String(format:"%.1f", Float(number/1024/1024)) + " M"
+        default:
+            return String(format:"%.1f", Float(number/1024/1024/1024)) + " G"
+        }
+    }
 }

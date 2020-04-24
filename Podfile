@@ -5,6 +5,9 @@ use_frameworks!
 target 'DSDownload-iOS' do
   platform :ios, '12.0'
   pod 'RealmSwift'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxRealm'
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'ObjectMapper'

@@ -42,7 +42,7 @@ class StatisticManager {
     
     private func configureObservers() {
         // Session observer
-        sessionManager.state.asObservable().skip(1).subscribe(onNext: { [weak self] _ in
+        taskManager.state.asObservable().skip(1).subscribe(onNext: { [weak self] _ in
             self?.sessionDidChange()
         }).disposed(by: disposeBag)
     }
@@ -107,6 +107,7 @@ class StatisticManager {
                 self?.configureRetriever()
             }
         }
+        
         retrieverOperationQueue.addOperation(retrieveOperation)
     }
 }
