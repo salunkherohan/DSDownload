@@ -37,7 +37,7 @@ class TasksViewController: UIViewController {
             guard let cell = sender as? UITableViewCell else { return }
             guard let cellIndex = self.tableView?.indexPath(for: cell) else { return }
             
-            destination.task = tasks[cellIndex.row]
+            destination.taskID = tasks[cellIndex.row].id
         }
     }
     
