@@ -29,6 +29,7 @@ class LoginViewController: DSDownloadViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        confirmButton.layer.cornerRadius = 8
         autologinSwitch.isOn = UserDefaults.standard.bool(forKey: Constants.userDefaultsAutoLogin)
     }
     

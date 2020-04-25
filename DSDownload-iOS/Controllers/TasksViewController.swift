@@ -31,6 +31,16 @@ class TasksViewController: UIViewController {
         refreshLoadingState()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetails" {
+            guard let destination = segue.destination as? TaskDetailsViewController else { return }
+            guard let cell = sender as? UITableViewCell else { return }
+            guard let cellIndex = self.tableView?.indexPath(for: cell) else { return }
+            
+            destination.task = tasks[cellIndex.row]
+        }
+    }
+    
     // MARK: Private
     
     private let dataManager = DBManager.shared
@@ -172,8 +182,31 @@ extension TasksViewController: UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         
         if let transfer = task.additional?.transfer {
-            let completion = Float(transfer.sizeDownloaded) / Float(task.size) * 100
-            cell.detailTextLabel?.text = "\(task.status.capitalized) - \(String(format:"%.1f", completion)) % - ↑ \(Tools.prettyPrintNumber(transfer.speedUpload))b/s - ↓ \(Tools.prettyPrintNumber(transfer.speedDownload))b/s"
+            var elements = [String]()
+            
+            if task.status != Task.StatusType.downloading.rawValue {
+                elements.append(task.status.capitalized)
+            } else {
+                if let progress = task.progress {
+                    elements.append(String(format: "%.1f", progress * 100) + " %")
+                }
+            }
+            
+            if [Task.StatusType.downloading.rawValue, Task.StatusType.seeding.rawValue].contains(task.status) {
+                elements.append("↑ \(Tools.prettyPrintNumber(transfer.speedUpload))b/s")
+                elements.append("↓ \(Tools.prettyPrintNumber(transfer.speedDownload))b/s")
+            }
+            
+            let intervalFormatter = DateComponentsFormatter()
+            intervalFormatter.allowedUnits = [.day, .hour, .minute, .second]
+            intervalFormatter.unitsStyle = .abbreviated
+            intervalFormatter.maximumUnitCount = 2
+            
+            if task.status == Task.StatusType.downloading.rawValue {
+                elements.append((task.remainingTime == nil) ? "Unknown remaining time" : ((intervalFormatter.string(from: Double(task.remainingTime!)) ?? "?") + " remaining"))
+            }
+            
+            cell.detailTextLabel?.text = elements.joined(separator: " - ")
         }
         
         return cell
@@ -182,6 +215,7 @@ extension TasksViewController: UITableViewDataSource {
 
 extension TasksViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showDetails", sender: tableView.cellForRow(at: indexPath))
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

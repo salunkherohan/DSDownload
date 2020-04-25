@@ -58,6 +58,14 @@ class Task: Object, Mappable {
         return additional?.detail?.createTime ?? 0
     }
     
+    var remainingTime: Int? {
+        guard let transfer = additional?.transfer else { return nil }
+        guard transfer.speedDownload > 0 else { return nil }
+        
+        let remainingSize = size - transfer.sizeDownloaded
+        return remainingSize/transfer.speedDownload
+    }
+    
     required convenience init?(map: Map) {
         self.init()
     }

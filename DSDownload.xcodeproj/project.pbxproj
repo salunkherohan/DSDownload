@@ -71,6 +71,7 @@
 		E2BA195C2452E4670037EECD /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BA195B2452E4670037EECD /* TasksViewController.swift */; };
 		E2BA195E245317530037EECD /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BA195D245317530037EECD /* AddTaskViewController.swift */; };
 		E2BA196124532A2D0037EECD /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BA196024532A2D0037EECD /* AuthenticationServices.framework */; };
+		E2BA196624541F8F0037EECD /* TaskDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BA196524541F8F0037EECD /* TaskDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,7 @@
 		E2BA195B2452E4670037EECD /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		E2BA195D245317530037EECD /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		E2BA196024532A2D0037EECD /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.4.sdk/System/Library/Frameworks/AuthenticationServices.framework; sourceTree = DEVELOPER_DIR; };
+		E2BA196524541F8F0037EECD /* TaskDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,6 +401,7 @@
 				18D5840F220490BF00D99289 /* LoginViewController.swift */,
 				E2BA195B2452E4670037EECD /* TasksViewController.swift */,
 				E2BA195D245317530037EECD /* AddTaskViewController.swift */,
+				E2BA196524541F8F0037EECD /* TaskDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -819,6 +822,7 @@
 				1891E59C2271FDB100AE0E44 /* VPNProfileManager.swift in Sources */,
 				187FFF56220C6C2800EC502C /* TaskManager.swift in Sources */,
 				18F3B57F2211A4760074676C /* Task.swift in Sources */,
+				E2BA196624541F8F0037EECD /* TaskDetailsViewController.swift in Sources */,
 				E2BA195C2452E4670037EECD /* TasksViewController.swift in Sources */,
 				697832D4244C7F51006A3768 /* AsyncOperation.swift in Sources */,
 				18D584042204901400D99289 /* Network.swift in Sources */,
