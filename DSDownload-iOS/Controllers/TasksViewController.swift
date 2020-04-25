@@ -119,6 +119,8 @@ class TasksViewController: UIViewController {
     }
     
     private func endLoading() {
+        tableView?.reloadData()
+        
         tableView?.isUserInteractionEnabled = true
         tableView?.alpha = 1
         
@@ -170,7 +172,7 @@ extension TasksViewController: UITableViewDataSource {
         
         if let transfer = task.additional?.transfer {
             let completion = Float(transfer.sizeDownloaded) / Float(task.size) * 100
-            cell.detailTextLabel?.text = "\(String(format:"%.1f", completion)) % - ↑ \(Tools.prettyPrintNumber(transfer.speedUpload))b/s - ↓ \(Tools.prettyPrintNumber(transfer.speedDownload))b/s"
+            cell.detailTextLabel?.text = "\(task.status.capitalized) - \(String(format:"%.1f", completion)) % - ↑ \(Tools.prettyPrintNumber(transfer.speedUpload))b/s - ↓ \(Tools.prettyPrintNumber(transfer.speedDownload))b/s"
         }
         
         return cell
@@ -185,8 +187,16 @@ extension TasksViewController: UITableViewDelegate {
         let task = tasks[indexPath.row]
         
         let pauseAction = UIContextualAction(style: .normal, title: (task.status == Task.StatusType.downloading.rawValue) ? "Pause" : "Resume", handler: { [weak self] _,_,_ in
+            DispatchQueue.main.async {
+                self?.startLoading()
+            }
+            
             if task.status == Task.StatusType.downloading.rawValue {
                 self?.taskManager.pause(task) { [weak self] (result) in
+                    DispatchQueue.main.async {
+                        self?.endLoading()
+                    }
+                    
                     guard !result else { return }
                     DispatchQueue.main.async {
                         self?.showErrorMessage("An error occurred")
@@ -194,6 +204,10 @@ extension TasksViewController: UITableViewDelegate {
                 }
             } else {
                 self?.taskManager.resume(task) { [weak self] (result) in
+                    DispatchQueue.main.async {
+                        self?.endLoading()
+                    }
+                    
                     guard !result else {return}
                     DispatchQueue.main.async {
                         self?.showErrorMessage("An error occurred")
@@ -203,15 +217,24 @@ extension TasksViewController: UITableViewDelegate {
         })
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { [weak self] _,_,_ in
+            DispatchQueue.main.async {
+                self?.startLoading()
+            }
+            
             self?.taskManager.delete([task]) { [weak self] (result) in
-                guard !result else { return }
                 DispatchQueue.main.async {
+                    self?.endLoading()
+                    
+                    guard !result else {
+                        return
+                    }
+                    
                     self?.showErrorMessage("An error occurred")
                 }
             }
         })
         
-        if ![Task.StatusType.finishing.rawValue, Task.StatusType.finished.rawValue, Task.StatusType.error.rawValue].contains(task.status) {
+        if task.status == Task.StatusType.downloading.rawValue || task.status == Task.StatusType.paused.rawValue {
             return UISwipeActionsConfiguration(actions: [deleteAction, pauseAction])
         }
         
