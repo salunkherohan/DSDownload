@@ -157,24 +157,11 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="e6n-WB-cfk"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="AY7-Sm-Diy"/>
                             </scrollView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aQ-tN-CwU">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
-                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="2SF-CJ-ZOd"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wuh-av-cpF" secondAttribute="bottom" id="65z-XJ-ewI"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5aQ-tN-CwU" secondAttribute="trailing" id="7wD-xR-kuO"/>
-                            <constraint firstItem="5aQ-tN-CwU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="H3v-Dk-6As"/>
                             <constraint firstAttribute="trailing" secondItem="wuh-av-cpF" secondAttribute="trailing" id="KZG-Ei-1G7"/>
-                            <constraint firstItem="5aQ-tN-CwU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="RMw-xP-irO"/>
                             <constraint firstItem="wuh-av-cpF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="jbc-qA-Rdr"/>
                             <constraint firstItem="wuh-av-cpF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pn8-I7-xnY"/>
                         </constraints>
@@ -183,7 +170,6 @@
                     <connections>
                         <outlet property="autologinSwitch" destination="DZd-Q8-ZKQ" id="3Zk-06-8Js"/>
                         <outlet property="confirmButton" destination="Ug0-pG-zYU" id="w24-ul-07L"/>
-                        <outlet property="errorLabel" destination="5aQ-tN-CwU" id="zOa-sy-7Bc"/>
                         <outlet property="loginField" destination="JDo-Et-zMA" id="eBc-mS-RQH"/>
                         <outlet property="passwordField" destination="pOb-vf-HVu" id="nl8-2X-zOo"/>
                         <outlet property="quickConnectIdField" destination="fWS-nh-H76" id="GQh-nn-wbR"/>
@@ -836,9 +822,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add task" id="M9D-rj-NkM">
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="Q91-N9-hJE"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="Q91-N9-hJE">
+                            <connections>
+                                <action selector="didTapAdd:" destination="Qnr-Au-oQT" id="sep-Kq-cr7"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="Q91-N9-hJE" id="gA6-HZ-nY1"/>
                         <outlet property="linkTextView" destination="MTR-ow-EFw" id="UC6-NW-8xu"/>
                         <outlet property="pasteButton" destination="58v-1M-eIa" id="IWr-Zo-on4"/>
                     </connections>

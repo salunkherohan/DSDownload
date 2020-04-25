@@ -147,15 +147,6 @@ class TaskDetailsViewController: UITableViewController {
         }).disposed(by: disposeBag)
     }
     
-    private func showErrorMessage(_ message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        
-        let OKButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(OKButton)
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
     // MARK: Loading
     
     private func startLoading() {

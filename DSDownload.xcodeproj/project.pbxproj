@@ -68,6 +68,7 @@
 		69D92CDB244D96D0007A9D26 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D92CD9244D96B1007A9D26 /* Realm+Extensions.swift */; };
 		69D92CDE244DF361007A9D26 /* VPNProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1891E59B2271FDB100AE0E44 /* VPNProfileManager.swift */; };
 		DCAE7032E15C6CB00617114A /* Pods_DSDownload_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2FA01D09B575DCEBA25D95 /* Pods_DSDownload_macOS.framework */; };
+		E28AF8202454781700EFF9CB /* ErrorMessenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28AF81F2454781700EFF9CB /* ErrorMessenger.swift */; };
 		E2BA195C2452E4670037EECD /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BA195B2452E4670037EECD /* TasksViewController.swift */; };
 		E2BA195E245317530037EECD /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BA195D245317530037EECD /* AddTaskViewController.swift */; };
 		E2BA196124532A2D0037EECD /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BA196024532A2D0037EECD /* AuthenticationServices.framework */; };
@@ -161,6 +162,7 @@
 		8D2FA01D09B575DCEBA25D95 /* Pods_DSDownload_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DSDownload_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE454B8E05118AD970BBE2A /* Pods_DSDownload_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DSDownload_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C1A9D1FA8AB1F254690CFC /* Pods-DSDownload-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSDownload-iOS.release.xcconfig"; path = "Target Support Files/Pods-DSDownload-iOS/Pods-DSDownload-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		E28AF81F2454781700EFF9CB /* ErrorMessenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessenger.swift; sourceTree = "<group>"; };
 		E2BA195B2452E4670037EECD /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		E2BA195D245317530037EECD /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		E2BA196024532A2D0037EECD /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.4.sdk/System/Library/Frameworks/AuthenticationServices.framework; sourceTree = DEVELOPER_DIR; };
@@ -398,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				18D58411220490D900D99289 /* DSDownloadViewController.swift */,
+				E28AF81F2454781700EFF9CB /* ErrorMessenger.swift */,
 				18D5840F220490BF00D99289 /* LoginViewController.swift */,
 				E2BA195B2452E4670037EECD /* TasksViewController.swift */,
 				E2BA195D245317530037EECD /* AddTaskViewController.swift */,
@@ -810,6 +813,7 @@
 				18F3B60C221468E50074676C /* Statistic.swift in Sources */,
 				697832D0244C70F3006A3768 /* Notification+Extensions.swift in Sources */,
 				18D58410220490BF00D99289 /* LoginViewController.swift in Sources */,
+				E28AF8202454781700EFF9CB /* ErrorMessenger.swift in Sources */,
 				18F3B60F2214693D0074676C /* StatisticManager.swift in Sources */,
 				185164182209F2AD00A02546 /* SessionManager.swift in Sources */,
 				69019994244F72F8004496BF /* User.swift in Sources */,

@@ -11,7 +11,6 @@ import SynologySwift
 
 class LoginViewController: DSDownloadViewController {
     
-    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var quickConnectIdField: UITextField!
     @IBOutlet weak var loginField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -105,8 +104,7 @@ class LoginViewController: DSDownloadViewController {
                     errorMessage = "Request error"
                 }
                 DispatchQueue.main.async {
-                    self.errorLabel.text = errorMessage
-                    self.errorLabel.isHidden = false
+                    self.showErrorMessage(errorMessage)
                 }
             }
         }
