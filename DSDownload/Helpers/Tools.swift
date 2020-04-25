@@ -22,11 +22,11 @@ class Tools {
         case 0..<1024:
             return "\(number) "
         case 1_000..<1024*1024:
-            return String(format:"%.1f", Float(number/1024)) + " k"
+            return String(format:"%.1f", Float(number)/1024) + " k"
         case 1_000_000..<1024*1024*1024:
-            return String(format:"%.1f", Float(number/1024/1024)) + " M"
+            return String(format:"%.1f", Float(number)/1024/1024) + " M"
         default:
-            return String(format:"%.1f", Float(number/1024/1024/1024)) + " G"
+            return String(format:"%.1f", Float(number)/1024/1024/1024) + " G"
         }
     }
 }
