@@ -677,6 +677,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ipf-Bj-T5X">
                                                     <rect key="frame" x="139" y="7" width="42" height="30"/>
                                                     <state key="normal" title="Pause"/>
+                                                    <connections>
+                                                        <action selector="didTapPause:" destination="LwK-ZG-R48" eventType="touchUpInside" id="vh0-bH-CrL"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -697,6 +700,9 @@
                                                     <state key="normal" title="Delete">
                                                         <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="didTapDelete:" destination="LwK-ZG-R48" eventType="touchUpInside" id="h5C-Tp-HNq"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -720,6 +726,7 @@
                         <outlet property="destinationField" destination="OLk-Ng-usZ" id="5Wy-Dv-G3Z"/>
                         <outlet property="fileSizeField" destination="JWj-BU-maz" id="CTB-4q-RDs"/>
                         <outlet property="filenameField" destination="Q6M-Fb-iqc" id="eZc-Gg-zXx"/>
+                        <outlet property="okButton" destination="dd5-YI-bey" id="TWb-Sp-Rvv"/>
                         <outlet property="pauseButton" destination="ipf-Bj-T5X" id="6Fh-bI-wZO"/>
                         <outlet property="progressField" destination="wvB-be-Lk3" id="NWQ-jm-miL"/>
                         <outlet property="speedField" destination="ooO-yW-VDV" id="hyH-Jm-hkH"/>

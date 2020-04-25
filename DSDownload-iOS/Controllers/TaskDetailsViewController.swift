@@ -12,6 +12,7 @@ import RxCocoa
 import RxRealm
 
 class TaskDetailsViewController: UITableViewController {
+    @IBOutlet weak var okButton: UIButton!
     @IBAction func dismissController(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -30,7 +31,55 @@ class TaskDetailsViewController: UITableViewController {
     @IBOutlet weak var timeLeftField: UILabel!
     
     @IBOutlet weak var pauseButton: UIButton!
+    @IBAction func didTapPause(_ sender: Any) {
+        guard let task = dataManager.realmContent.objects(Task.self).filter({ $0.id == self.taskID }).first else { return }
+        
+        self.startLoading()
+        
+        if task.status == Task.StatusType.downloading.rawValue {
+            taskManager.pause(task) { [weak self] (result) in
+                DispatchQueue.main.async {
+                    self?.endLoading()
+                }
+                
+                guard !result else { return }
+                DispatchQueue.main.async {
+                    self?.showErrorMessage("An error occurred")
+                }
+            }
+        } else {
+            taskManager.resume(task) { [weak self] (result) in
+                DispatchQueue.main.async {
+                    self?.endLoading()
+                }
+                
+                guard !result else {return}
+                DispatchQueue.main.async {
+                    self?.showErrorMessage("An error occurred")
+                }
+            }
+        }
+    }
+    
     @IBOutlet weak var deleteButton: UIButton!
+    @IBAction func didTapDelete(_ sender: Any) {
+        guard let task = dataManager.realmContent.objects(Task.self).filter({ $0.id == self.taskID }).first else { return }
+        
+        startLoading()
+        
+        taskManager.delete([task]) { [weak self] (result) in
+            DispatchQueue.main.async {
+                self?.endLoading()
+                
+                guard !result else {
+                    self?.dismiss(animated: true, completion: nil)
+                    return
+                }
+                
+                self?.showErrorMessage("An error occurred")
+            }
+        }
+    }
     
     var taskID: String?
     
@@ -43,7 +92,7 @@ class TaskDetailsViewController: UITableViewController {
     
     // MARK: Private
     
-     private let dataManager = DBManager.shared
+    private let dataManager = DBManager.shared
     private let taskManager = TaskManager.shared
     
     private let disposeBag = DisposeBag()
@@ -74,6 +123,9 @@ class TaskDetailsViewController: UITableViewController {
         transferredField.text = "↑ \(Tools.prettyPrintNumber(transfer.sizeUploaded))b - ↓ \(Tools.prettyPrintNumber(transfer.sizeDownloaded))b"
         speedField.text = "↑ \(Tools.prettyPrintNumber(transfer.speedUpload))b/s - ↓ \(Tools.prettyPrintNumber(transfer.speedDownload))b/s"
         timeLeftField.text = (task.remainingTime == nil) ? "Unknown" : intervalFormatter.string(from: Double(task.remainingTime!))
+        
+        pauseButton.isEnabled = (task.status == Task.StatusType.downloading.rawValue || task.status == Task.StatusType.paused.rawValue)
+        pauseButton.setTitle((task.status == Task.StatusType.paused.rawValue) ? "Resume": "Pause", for: .normal)
     }
     
     private func configureObservers() {
@@ -83,5 +135,32 @@ class TaskDetailsViewController: UITableViewController {
                 self?.updateDisplay()
             }
         }).disposed(by: disposeBag)
+    }
+    
+    private func showErrorMessage(_ message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        
+        let OKButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(OKButton)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: Loading
+    
+    private func startLoading() {
+        if let selectedRowIndex = tableView?.indexPathForSelectedRow {
+            tableView?.deselectRow(at: selectedRowIndex, animated: true)
+        }
+        
+        tableView?.isUserInteractionEnabled = false
+        
+        [okButton, deleteButton, pauseButton].forEach { $0?.isEnabled = false }
+    }
+    
+    private func endLoading() {
+        tableView?.isUserInteractionEnabled = true
+        
+        [okButton, deleteButton, pauseButton].forEach { $0?.isEnabled = true }
     }
 }
