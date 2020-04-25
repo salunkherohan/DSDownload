@@ -251,6 +251,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="TvQ-u3-SRt" firstAttribute="trailing" secondItem="fd8-EX-jgR" secondAttribute="trailing" id="1fS-8x-0c7"/>
                             <constraint firstItem="fd8-EX-jgR" firstAttribute="top" secondItem="TvQ-u3-SRt" secondAttribute="top" id="7hQ-ho-nja"/>
@@ -260,6 +261,9 @@
                             <constraint firstItem="59M-Z3-DKN" firstAttribute="centerX" secondItem="fd8-EX-jgR" secondAttribute="centerX" id="hbs-xl-5pI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TvQ-u3-SRt"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="BOJ-zZ-vEl" appends="YES" id="Rnx-P6-gEI"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Tasks" prompt="Not connected" id="dW8-q6-2Na">
                         <barButtonItem key="backBarButtonItem" title="Tasks" id="CD6-kK-nZI"/>
@@ -283,10 +287,15 @@
                         <outlet property="addButton" destination="gFp-Yd-PIG" id="4h9-1J-5Vv"/>
                         <outlet property="tableView" destination="fd8-EX-jgR" id="JgO-Vz-gZp"/>
                         <outlet property="vpnIndicator" destination="5de-Oa-peX" id="mi8-xX-rEX"/>
-                        <segue destination="z3Y-zA-SU1" kind="show" identifier="showDetails" id="9t5-l0-OF5"/>
+                        <segue destination="z3Y-zA-SU1" kind="presentation" identifier="showDetails" id="9t5-l0-OF5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ISD-x7-ZiM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="BOJ-zZ-vEl">
+                    <connections>
+                        <action selector="didLongPressTable:" destination="5QA-P5-NRq" id="UrO-WL-PFZ"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2821.5999999999999" y="-418.74062968515744"/>
         </scene>
@@ -295,7 +304,7 @@
             <objects>
                 <tableViewController id="LwK-ZG-R48" customClass="TaskDetailsViewController" customModule="DSDownload" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" sectionIndexMinimumDisplayRowCount="2" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Q3c-RW-aax">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -693,7 +702,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Task details" id="Ow7-zw-nAi">
                         <barButtonItem key="backBarButtonItem" title="Tasks" id="ufV-WE-bEe"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="RNi-6Q-uYa"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="RNi-6Q-uYa">
+                            <connections>
+                                <action selector="dismissController:" destination="LwK-ZG-R48" id="AUx-re-2lS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="connectedPairs" destination="Q5Q-r0-XH2" id="4Bo-az-Lnq"/>
@@ -702,11 +715,13 @@
                         <outlet property="destinationField" destination="OLk-Ng-usZ" id="5Wy-Dv-G3Z"/>
                         <outlet property="fileSizeField" destination="JWj-BU-maz" id="CTB-4q-RDs"/>
                         <outlet property="filenameField" destination="Q6M-Fb-iqc" id="eZc-Gg-zXx"/>
+                        <outlet property="okButton" destination="RNi-6Q-uYa" id="x8B-ed-ihx"/>
                         <outlet property="pauseButton" destination="ipf-Bj-T5X" id="6Fh-bI-wZO"/>
                         <outlet property="progressField" destination="wvB-be-Lk3" id="NWQ-jm-miL"/>
                         <outlet property="speedField" destination="ooO-yW-VDV" id="hyH-Jm-hkH"/>
                         <outlet property="statusField" destination="SGL-dg-Dze" id="LeB-6t-nuD"/>
                         <outlet property="timeLeftField" destination="0mH-jC-fxz" id="7uK-wc-mTa"/>
+                        <outlet property="timeLeftTitle" destination="XvV-e4-UbH" id="KOf-AR-6bj"/>
                         <outlet property="transferredField" destination="cRg-JA-0UT" id="JUz-6i-thC"/>
                         <outlet property="usernameField" destination="u58-iC-C0z" id="9gi-JX-UB2"/>
                     </connections>
@@ -857,7 +872,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="07p-o6-fEd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lBi-ic-tjj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

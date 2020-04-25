@@ -12,7 +12,7 @@ import RxCocoa
 import RxRealm
 
 class TaskDetailsViewController: UITableViewController {
-    @IBOutlet weak var okButton: UIButton!
+    @IBOutlet weak var okButton: UIBarButtonItem!
     @IBAction func dismissController(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -28,6 +28,8 @@ class TaskDetailsViewController: UITableViewController {
     @IBOutlet weak var transferredField: UILabel!
     @IBOutlet weak var connectedPairs: UILabel!
     @IBOutlet weak var speedField: UILabel!
+    
+    @IBOutlet weak var timeLeftTitle: UILabel!
     @IBOutlet weak var timeLeftField: UILabel!
     
     @IBOutlet weak var pauseButton: UIButton!
@@ -121,8 +123,16 @@ class TaskDetailsViewController: UITableViewController {
         statusField.text = task.status.capitalized
         progressField.text = String(format: "%.1f", Float(transfer.sizeDownloaded) / Float(task.size) * 100) + " %"
         transferredField.text = "↑ \(Tools.prettyPrintNumber(transfer.sizeUploaded))b - ↓ \(Tools.prettyPrintNumber(transfer.sizeDownloaded))b"
+        connectedPairs.text = "Seeders: \(detail.connectedSeeders) - Leechers: \(detail.connectedLeechers)"
         speedField.text = "↑ \(Tools.prettyPrintNumber(transfer.speedUpload))b/s - ↓ \(Tools.prettyPrintNumber(transfer.speedDownload))b/s"
-        timeLeftField.text = (task.remainingTime == nil) ? "Unknown" : intervalFormatter.string(from: Double(task.remainingTime!))
+        
+        if task.status == Task.StatusType.finished.rawValue {
+            timeLeftTitle.text = "Finished in"
+            timeLeftField.text = intervalFormatter.string(from: Double(detail.completedTime - detail.createTime))
+        } else {
+            timeLeftTitle.text = "Time left"
+            timeLeftField.text = (task.remainingTime == nil) ? "Unknown" : intervalFormatter.string(from: Double(task.remainingTime!))
+        }
         
         pauseButton.isEnabled = (task.status == Task.StatusType.downloading.rawValue || task.status == Task.StatusType.paused.rawValue)
         pauseButton.setTitle((task.status == Task.StatusType.paused.rawValue) ? "Resume": "Pause", for: .normal)
@@ -155,12 +165,14 @@ class TaskDetailsViewController: UITableViewController {
         
         tableView?.isUserInteractionEnabled = false
         
-        [okButton, deleteButton, pauseButton].forEach { $0?.isEnabled = false }
+        [deleteButton, pauseButton].forEach { $0?.isEnabled = false }
+        okButton.isEnabled = false
     }
     
     private func endLoading() {
         tableView?.isUserInteractionEnabled = true
         
-        [okButton, deleteButton, pauseButton].forEach { $0?.isEnabled = true }
+        [deleteButton, pauseButton].forEach { $0?.isEnabled = true }
+        okButton.isEnabled = true
     }
 }

@@ -24,6 +24,24 @@ class TasksViewController: UIViewController {
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBAction func didLongPressTable(_ sender: Any) {
+        let chooseActionController = UIAlertController(title: nil, message: "Choose action", preferredStyle: .actionSheet)
+        
+        let clearFinishedAction = UIAlertAction(title: "Clear finished", style: .default, handler: { [weak self] _ in
+            guard let finishedTasks = self?.tasks.filter({ $0.status == Task.StatusType.finished.rawValue }) else { return }
+            
+            self?.taskManager.delete(finishedTasks) { [weak self] (result) in
+                guard !result else {return}
+                DispatchQueue.main.async {
+                    self?.showErrorMessage("An error occurred")
+                }
+            }
+        })
+        
+        chooseActionController.addAction(clearFinishedAction)
+        present(chooseActionController, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +51,8 @@ class TasksViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails" {
-            guard let destination = segue.destination as? TaskDetailsViewController else { return }
+            guard let destinationNav = segue.destination as? UINavigationController else { return }
+            guard let destination = destinationNav.viewControllers.first as? TaskDetailsViewController else { return }
             guard let cell = sender as? UITableViewCell else { return }
             guard let cellIndex = self.tableView?.indexPath(for: cell) else { return }
             
