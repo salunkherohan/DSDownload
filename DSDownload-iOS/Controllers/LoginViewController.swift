@@ -36,9 +36,13 @@ class LoginViewController: DSDownloadViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if autologinSwitch.isOn {
-            if let qcID = quickConnectIdField.text, let username = loginField.text, let password = passwordField.text, !qcID.isEmpty, !username.isEmpty, !password.isEmpty {
-                login()
+        if sessionManager.isConnected || sessionManager.state.value == SessionManager.State.pendingValidation.rawValue {
+            self.performSegue(withIdentifier: "toHome", sender: nil)
+        } else {
+            if autologinSwitch.isOn {
+                if let qcID = quickConnectIdField.text, let username = loginField.text, let password = passwordField.text, !qcID.isEmpty, !username.isEmpty, !password.isEmpty {
+                    login()
+                }
             }
         }
     }
