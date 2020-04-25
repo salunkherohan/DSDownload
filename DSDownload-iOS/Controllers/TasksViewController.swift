@@ -166,7 +166,9 @@ extension TasksViewController: UITableViewDataSource {
         let downStatistic = "↓ \(Tools.prettyPrintNumber(statistics.speedDownload))b/s"
         let upStatistic = "↑ \(Tools.prettyPrintNumber(statistics.speedUpload))b/s"
         
-        return "\(upStatistic) - \(downStatistic)"
+        let taskNumberString = (tasks.count == 0) ? "No tasks" : ("\(tasks.count) " + ((tasks.count > 1) ? "tasks" : "task"))
+        
+        return "\(taskNumberString) - \(upStatistic) - \(downStatistic)"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
