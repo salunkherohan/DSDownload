@@ -17,7 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialization
         DSInit.configure()
         
-        let _ = SessionManager.shared
+        return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        TaskManager.shared.add(url.absoluteString)
         
         return true
     }
