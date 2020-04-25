@@ -822,6 +822,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add task" id="M9D-rj-NkM">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="2Fb-bt-Cbr">
+                            <connections>
+                                <action selector="dismiss:" destination="Qnr-Au-oQT" id="u20-xb-h3O"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="Q91-N9-hJE">
                             <connections>
                                 <action selector="didTapAdd:" destination="Qnr-Au-oQT" id="sep-Kq-cr7"/>

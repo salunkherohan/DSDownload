@@ -8,6 +8,10 @@
 import UIKit
 
 class AddTaskViewController: UITableViewController {
+    @IBAction func dismiss(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBOutlet weak var linkTextView: UITextView!
     
     @IBOutlet weak var addButton: UIBarButtonItem!
