@@ -10,12 +10,7 @@ import UIKit
 class AddTaskViewController: UITableViewController {
     @IBOutlet weak var linkTextView: UITextView!
     
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBAction func didTapCancel(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var addButton: UIBarButtonItem!
     @IBAction func didTapAdd(_ sender: Any) {
         startLoading()
         
@@ -73,12 +68,14 @@ class AddTaskViewController: UITableViewController {
         
         tableView?.isUserInteractionEnabled = false
         
-        [addButton, cancelButton, pasteButton].forEach { $0?.isEnabled = false }
+        pasteButton.isEnabled = false
+        addButton.isEnabled = false
     }
     
     private func endLoading() {
         tableView?.isUserInteractionEnabled = true
         
-        [addButton, cancelButton, pasteButton].forEach { $0?.isEnabled = true }
+        pasteButton.isEnabled = true
+        addButton.isEnabled = true
     }
 }
