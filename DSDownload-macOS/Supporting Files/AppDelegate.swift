@@ -33,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Create menu button
         if let button = statusItem.button {
-            button.image = NSImage(imageLiteralResourceName: "img_status_bar_ico")
+            button.image = NSImage(imageLiteralResourceName: "status-bar-icon")
             button.action = #selector(AppDelegate.togglePopover(_:))
         }
         
