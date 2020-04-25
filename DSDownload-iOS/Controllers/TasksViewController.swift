@@ -17,6 +17,7 @@ class TasksViewController: UIViewController {
     
     @IBAction func didTapLogout(_ sender: Any) {
         sessionManager.logout()
+        UserDefaults.standard.set(false, forKey: Constants.userDefaultsAutoLogin)
         self.dismiss(animated: true, completion: nil)
     }
     

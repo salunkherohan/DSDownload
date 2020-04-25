@@ -15,6 +15,9 @@ struct Constants {
     static let statisticsIntervalRefreshForInActive: Double = 300.0 // In seconds
     static let VPNIntervalRefresh: Double = 240.0 // In seconds
     
+    // MARK: User Defaults
+    static let userDefaultsAutoLogin: String = "dsdownload_auto-login"
+    
     // MARK: Realm
 
     static let realmContentDBName: String = "dsdownload_content_db.realm"

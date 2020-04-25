@@ -26,6 +26,12 @@ class LoginViewController: DSDownloadViewController {
         configureUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        autologinSwitch.isOn = UserDefaults.standard.bool(forKey: Constants.userDefaultsAutoLogin)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -53,6 +59,8 @@ class LoginViewController: DSDownloadViewController {
     }
     
     private func login() {
+        UserDefaults.standard.set(autologinSwitch.isOn, forKey: Constants.userDefaultsAutoLogin)
+        
         guard let quickConnectId = quickConnectIdField.text, let login = loginField.text, let password = passwordField.text else {
             fatalError("Could not get reference to login field")
         }
