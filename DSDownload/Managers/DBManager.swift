@@ -24,7 +24,8 @@ class DBManager {
         TaskAdditionalDetail.self,
         TaskAdditionalTransfer.self,
         Statistic.self,
-        VPNProfile.self
+        VPNProfile.self,
+        Item.self
     ]
     
     // MARK: Public properties
@@ -41,6 +42,10 @@ class DBManager {
         guard let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {fatalError("DSDownload wrong documents URL")}
 
         let contentDBURL = documentsUrl.appendingPathComponent(Constants.realmContentDBName)
+        
+        // Uncomment this line to remove current DB - FOR TESTING ONLY
+        // try? fileManager.removeItem(at: contentDBURL)
+        
         realmContentConfiguration = Realm.Configuration(fileURL: contentDBURL, schemaVersion: UInt64(Constants.realmContentDBVersion), migrationBlock: { _, _ in
             // Nothing to do. Content base doesn't need migration.
         }, objectTypes: DBManager.contentDBObjectTypes)

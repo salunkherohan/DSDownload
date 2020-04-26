@@ -38,7 +38,12 @@ class TasksViewController: UIViewController {
             }
         })
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            chooseActionController.dismiss(animated: true, completion: nil)
+        })
+        
         chooseActionController.addAction(clearFinishedAction)
+        chooseActionController.addAction(cancelAction)
         present(chooseActionController, animated: true, completion: nil)
     }
     
@@ -198,7 +203,9 @@ extension TasksViewController: UITableViewDataSource {
             
             if task.status != Task.StatusType.downloading.rawValue {
                 elements.append(task.status.capitalized)
-            } else {
+            }
+            
+            if task.status == Task.StatusType.downloading.rawValue || task.status == Task.StatusType.paused.rawValue {
                 if let progress = task.progress {
                     elements.append(String(format: "%.1f", progress * 100) + " %")
                 }

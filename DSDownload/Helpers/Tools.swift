@@ -21,9 +21,9 @@ class Tools {
         switch number {
         case 0..<1024:
             return "\(number) "
-        case 1_000..<1024*1024:
+        case 1_024..<1024*1024:
             return String(format:"%.1f", Float(number)/1024) + " k"
-        case 1_000_000..<1024*1024*1024:
+        case 1024*1024..<1024*1024*1024:
             return String(format:"%.1f", Float(number)/1024/1024) + " M"
         default:
             return String(format:"%.1f", Float(number)/1024/1024/1024) + " G"

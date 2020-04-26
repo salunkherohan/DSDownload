@@ -16,6 +16,6 @@ class DSInit {
         _ = TaskManager.shared
         _ = StatisticManager.shared
         _ = VPNProfileManager.shared
-        
+        _ = SearchManager.shared
     }
 }
