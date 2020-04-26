@@ -65,6 +65,7 @@
 		697832D4244C7F51006A3768 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697832D3244C7F51006A3768 /* AsyncOperation.swift */; };
 		697832D5244C7F51006A3768 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697832D3244C7F51006A3768 /* AsyncOperation.swift */; };
 		6997D0D6238FFCA9008C9D7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997D0D5238FFCA9008C9D7B /* Foundation.framework */; };
+		69D2ED612456098E00846915 /* dsdownload.icns in Resources */ = {isa = PBXBuildFile; fileRef = 69D2ED602456098E00846915 /* dsdownload.icns */; };
 		69D92CDA244D96B1007A9D26 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D92CD9244D96B1007A9D26 /* Realm+Extensions.swift */; };
 		69D92CDB244D96D0007A9D26 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D92CD9244D96B1007A9D26 /* Realm+Extensions.swift */; };
 		69D92CDE244DF361007A9D26 /* VPNProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1891E59B2271FDB100AE0E44 /* VPNProfileManager.swift */; };
@@ -154,6 +155,7 @@
 		697832CF244C70F3006A3768 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		697832D3244C7F51006A3768 /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		6997D0D5238FFCA9008C9D7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		69D2ED602456098E00846915 /* dsdownload.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = dsdownload.icns; sourceTree = "<group>"; };
 		69D92CD9244D96B1007A9D26 /* Realm+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Extensions.swift"; sourceTree = "<group>"; };
 		8D2FA01D09B575DCEBA25D95 /* Pods_DSDownload_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DSDownload_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE454B8E05118AD970BBE2A /* Pods_DSDownload_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DSDownload_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -459,6 +461,7 @@
 		696CECB12455BDD800C03AD8 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				69D2ED602456098E00846915 /* dsdownload.icns */,
 				696CECB22455BE8300C03AD8 /* torrent-file-icon.icns */,
 			);
 			path = Icons;
@@ -726,6 +729,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				189E428322035A4C007B8F0B /* Assets.xcassets in Resources */,
+				69D2ED612456098E00846915 /* dsdownload.icns in Resources */,
 				189E428622035A4C007B8F0B /* Main.storyboard in Resources */,
 				696CECB32455BE8300C03AD8 /* torrent-file-icon.icns in Resources */,
 			);
