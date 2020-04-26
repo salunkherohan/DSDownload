@@ -48,6 +48,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    @objc  func application(_ sender: NSApplication, openFile filename: String) -> Bool {
+        print("File name: \(filename)")
+        return true
+    }
+    
     @objc func handleOpenURL(event: NSAppleEventDescriptor, reply: NSAppleEventDescriptor) {
         guard let magnet = event.paramDescriptor(forKeyword: keyDirectObject)?.stringValue else {return}
         TaskManager.shared.add(magnet)
