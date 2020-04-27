@@ -49,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc  func application(_ sender: NSApplication, openFile filename: String) -> Bool {
-        print("File name: \(filename)")
+        TaskManager.shared.add(URL(fileURLWithPath: filename))
         return true
     }
     

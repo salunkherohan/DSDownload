@@ -49,6 +49,17 @@ class TaskManager {
         configureAction(for: .post, params: params, encoding: URLEncoding(destination: .httpBody), completion: completion)
     }
     
+    func add(_ file: URL, completion: ((_ result: Bool) -> ())? = nil) {
+        guard let data = try? Data(contentsOf: file) else {completion?(false); return}
+        let file = (data: data, name: "file", fileName: file.lastPathComponent, mimeType: "application/x-bittorrent")
+        let params: [String: Any] = [
+            "api": "SYNO.DownloadStation.Task",
+            "method": "create",
+            "version": 1
+        ]
+        configureAction(for: .post, params: params, file: file, completion: completion)
+    }
+    
     func delete(_ tasks: [Task], completion: ((_ result: Bool) -> ())? = nil) {
         guard tasks.count > 0 else {completion?(false); return}
         
@@ -190,7 +201,7 @@ class TaskManager {
         retrieverOperationQueue.addOperation(retrieveOperation)
     }
     
-    private func configureAction(for action: HTTPMethod, params: [String: Any], encoding: ParameterEncoding? = nil, completion: ((_ result: Bool) -> ())? = nil) {
+    private func configureAction(for action: HTTPMethod, params: [String: Any], encoding: ParameterEncoding? = nil, file: Network.FileDescription? = nil, completion: ((_ result: Bool) -> ())? = nil) {
         // Clear retriever
         retrieverOperationQueue.cancelAllOperations()
         
@@ -200,7 +211,7 @@ class TaskManager {
         // Add new action operation
         let actionOperation = AsyncOperation<JSON?>()
         actionOperation.setBlockOperation { operationEnded in
-            Network().performRequest(action, path: "DownloadStation/task.cgi", params: params, encoding: encoding ?? URLEncoding(destination: .queryString), success: { (results) in
+            Network().performRequest(action, path: "DownloadStation/task.cgi", params: params, encoding: encoding ?? URLEncoding(destination: .queryString), file: file, success: { (results) in
                 operationEnded(.success(results))
             }) { (_) in
                 operationEnded(.failure(.requestError))

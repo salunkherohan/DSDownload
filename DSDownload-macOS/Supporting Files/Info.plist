@@ -12,21 +12,19 @@
 				<string>torrent</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>torrent-file-icon</string>
+			<string>dsdownload-file.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>BitTorrent Document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSHandlerRank</key>
-			<string>Owner</string>
+			<string>Default</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.torrent</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>XML</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -73,7 +71,7 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>UTExportedTypeDeclarations</key>
+	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>
 			<key>UTTypeConformsTo</key>
@@ -85,7 +83,7 @@
 			<key>UTTypeDescription</key>
 			<string>BitTorrent Document</string>
 			<key>UTTypeIconFile</key>
-			<string>torrent-file-icon.icns</string>
+			<string>dsdownload-file.icns</string>
 			<key>UTTypeIdentifier</key>
 			<string>org.bittorrent.torrent</string>
 			<key>UTTypeReferenceURL</key>

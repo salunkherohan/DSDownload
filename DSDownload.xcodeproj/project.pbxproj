@@ -55,7 +55,7 @@
 		2FDF3CD8B203B97EA99C88E1 /* Pods_DSDownload_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDE454B8E05118AD970BBE2A /* Pods_DSDownload_iOS.framework */; };
 		69019994244F72F8004496BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69019993244F72F8004496BF /* User.swift */; };
 		69019995244F73EB004496BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69019993244F72F8004496BF /* User.swift */; };
-		696CECB32455BE8300C03AD8 /* torrent-file-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 696CECB22455BE8300C03AD8 /* torrent-file-icon.icns */; };
+		696CECB32455BE8300C03AD8 /* dsdownload-file.icns in Resources */ = {isa = PBXBuildFile; fileRef = 696CECB22455BE8300C03AD8 /* dsdownload-file.icns */; };
 		697832C5244B846C006A3768 /* DSInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697832C4244B846C006A3768 /* DSInit.swift */; };
 		697832C9244B87A6006A3768 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697832C8244B87A6006A3768 /* DBManager.swift */; };
 		697832CA244B8813006A3768 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697832C8244B87A6006A3768 /* DBManager.swift */; };
@@ -149,7 +149,7 @@
 		635C55DCF32F57CF19324477 /* Pods-DSDownload-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSDownload-macOS.debug.xcconfig"; path = "Target Support Files/Pods-DSDownload-macOS/Pods-DSDownload-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		69019993244F72F8004496BF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6961929723A83910002876C6 /* DSDownload.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DSDownload.entitlements; sourceTree = "<group>"; };
-		696CECB22455BE8300C03AD8 /* torrent-file-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "torrent-file-icon.icns"; sourceTree = "<group>"; };
+		696CECB22455BE8300C03AD8 /* dsdownload-file.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "dsdownload-file.icns"; sourceTree = "<group>"; };
 		697832C4244B846C006A3768 /* DSInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSInit.swift; sourceTree = "<group>"; };
 		697832C8244B87A6006A3768 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		697832CF244C70F3006A3768 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
@@ -462,7 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				69D2ED602456098E00846915 /* dsdownload.icns */,
-				696CECB22455BE8300C03AD8 /* torrent-file-icon.icns */,
+				696CECB22455BE8300C03AD8 /* dsdownload-file.icns */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -731,7 +731,7 @@
 				189E428322035A4C007B8F0B /* Assets.xcassets in Resources */,
 				69D2ED612456098E00846915 /* dsdownload.icns in Resources */,
 				189E428622035A4C007B8F0B /* Main.storyboard in Resources */,
-				696CECB32455BE8300C03AD8 /* torrent-file-icon.icns in Resources */,
+				696CECB32455BE8300C03AD8 /* dsdownload-file.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
