@@ -55,6 +55,7 @@
 		2FDF3CD8B203B97EA99C88E1 /* Pods_DSDownload_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDE454B8E05118AD970BBE2A /* Pods_DSDownload_iOS.framework */; };
 		69019994244F72F8004496BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69019993244F72F8004496BF /* User.swift */; };
 		69019995244F73EB004496BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69019993244F72F8004496BF /* User.swift */; };
+		696CECB32455BE8300C03AD8 /* dsdownload-file.icns in Resources */ = {isa = PBXBuildFile; fileRef = 696CECB22455BE8300C03AD8 /* dsdownload-file.icns */; };
 		697832C5244B846C006A3768 /* DSInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697832C4244B846C006A3768 /* DSInit.swift */; };
 		697832C9244B87A6006A3768 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697832C8244B87A6006A3768 /* DBManager.swift */; };
 		697832CA244B8813006A3768 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697832C8244B87A6006A3768 /* DBManager.swift */; };
@@ -64,6 +65,7 @@
 		697832D4244C7F51006A3768 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697832D3244C7F51006A3768 /* AsyncOperation.swift */; };
 		697832D5244C7F51006A3768 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697832D3244C7F51006A3768 /* AsyncOperation.swift */; };
 		6997D0D6238FFCA9008C9D7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997D0D5238FFCA9008C9D7B /* Foundation.framework */; };
+		69D2ED612456098E00846915 /* dsdownload.icns in Resources */ = {isa = PBXBuildFile; fileRef = 69D2ED602456098E00846915 /* dsdownload.icns */; };
 		69D92CDA244D96B1007A9D26 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D92CD9244D96B1007A9D26 /* Realm+Extensions.swift */; };
 		69D92CDB244D96D0007A9D26 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D92CD9244D96B1007A9D26 /* Realm+Extensions.swift */; };
 		69D92CDE244DF361007A9D26 /* VPNProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1891E59B2271FDB100AE0E44 /* VPNProfileManager.swift */; };
@@ -125,7 +127,6 @@
 		189E428222035A4C007B8F0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		189E428522035A4C007B8F0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		189E428722035A4C007B8F0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		189E428822035A4C007B8F0B /* DSDownload_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DSDownload_macOS.entitlements; sourceTree = "<group>"; };
 		189E428D22035A4C007B8F0B /* DSDownload-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DSDownload-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		189E429122035A4D007B8F0B /* DSDownload_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDownload_macOSTests.swift; sourceTree = "<group>"; };
 		189E429322035A4D007B8F0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -148,11 +149,13 @@
 		635C55DCF32F57CF19324477 /* Pods-DSDownload-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSDownload-macOS.debug.xcconfig"; path = "Target Support Files/Pods-DSDownload-macOS/Pods-DSDownload-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		69019993244F72F8004496BF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6961929723A83910002876C6 /* DSDownload.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DSDownload.entitlements; sourceTree = "<group>"; };
+		696CECB22455BE8300C03AD8 /* dsdownload-file.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "dsdownload-file.icns"; sourceTree = "<group>"; };
 		697832C4244B846C006A3768 /* DSInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSInit.swift; sourceTree = "<group>"; };
 		697832C8244B87A6006A3768 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		697832CF244C70F3006A3768 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		697832D3244C7F51006A3768 /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		6997D0D5238FFCA9008C9D7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		69D2ED602456098E00846915 /* dsdownload.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = dsdownload.icns; sourceTree = "<group>"; };
 		69D92CD9244D96B1007A9D26 /* Realm+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Extensions.swift"; sourceTree = "<group>"; };
 		8D2FA01D09B575DCEBA25D95 /* Pods_DSDownload_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DSDownload_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE454B8E05118AD970BBE2A /* Pods_DSDownload_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DSDownload_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -294,8 +297,7 @@
 				18D583F02204779200D99289 /* Monitor */,
 				18D583EB2204767A00D99289 /* Controllers */,
 				18D583EC2204768800D99289 /* Supporting Files */,
-				189E428422035A4C007B8F0B /* Main.storyboard */,
-				189E428822035A4C007B8F0B /* DSDownload_macOS.entitlements */,
+				696CECAD2455BCD300C03AD8 /* Ressources */,
 			);
 			path = "DSDownload-macOS";
 			sourceTree = "<group>";
@@ -342,9 +344,8 @@
 		18D583EC2204768800D99289 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				189E428722035A4C007B8F0B /* Info.plist */,
 				189E427E22035A4C007B8F0B /* AppDelegate.swift */,
-				189E428222035A4C007B8F0B /* Assets.xcassets */,
+				189E428722035A4C007B8F0B /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -421,6 +422,49 @@
 				18F3B5782211672E0074676C /* Tools.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		696CECAD2455BCD300C03AD8 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				696CECAE2455BCFC00C03AD8 /* Storyboards */,
+				696CECAF2455BD0700C03AD8 /* Assets */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		696CECAE2455BCFC00C03AD8 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				189E428422035A4C007B8F0B /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		696CECAF2455BD0700C03AD8 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				696CECB12455BDD800C03AD8 /* Icons */,
+				696CECB02455BD1800C03AD8 /* Fonts */,
+				189E428222035A4C007B8F0B /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		696CECB02455BD1800C03AD8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		696CECB12455BDD800C03AD8 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				69D2ED602456098E00846915 /* dsdownload.icns */,
+				696CECB22455BE8300C03AD8 /* dsdownload-file.icns */,
+			);
+			path = Icons;
 			sourceTree = "<group>";
 		};
 		697832C3244B8352006A3768 /* Base */ = {
@@ -685,7 +729,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				189E428322035A4C007B8F0B /* Assets.xcassets in Resources */,
+				69D2ED612456098E00846915 /* dsdownload.icns in Resources */,
 				189E428622035A4C007B8F0B /* Main.storyboard in Resources */,
+				696CECB32455BE8300C03AD8 /* dsdownload-file.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1476,7 +1522,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1555,7 +1601,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

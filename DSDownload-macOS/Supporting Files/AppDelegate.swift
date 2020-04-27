@@ -33,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Create menu button
         if let button = statusItem.button {
-            button.image = NSImage(imageLiteralResourceName: "img_status_bar_ico")
+            button.image = NSImage(imageLiteralResourceName: "status-bar-icon")
             button.action = #selector(AppDelegate.togglePopover(_:))
         }
         
@@ -46,6 +46,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             guard let strongSelf = self, strongSelf.popover.isShown else {return}
             self?.closePopover(sender: event)
         }
+    }
+    
+    @objc  func application(_ sender: NSApplication, openFile filename: String) -> Bool {
+        TaskManager.shared.add(URL(fileURLWithPath: filename))
+        return true
     }
     
     @objc func handleOpenURL(event: NSAppleEventDescriptor, reply: NSAppleEventDescriptor) {
