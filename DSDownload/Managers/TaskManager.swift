@@ -169,17 +169,33 @@ class TaskManager {
             switch result {
             case .success(let json):
                 guard let tasksData = json?.dictionary?["data"]?["tasks"].array, let realm = self?.dataManager.realmContent else {return}
+                
+                // List fresh task
+                var newTasks: [Task] = []
+                for t in tasksData {
+                    guard let tData = t.dictionaryObject, let task = Task(JSON: tData) else {continue}
+                    task.updateDate = Date()
+                    newTasks.append(task)
+                }
+                
                 try? realm.safeWrite {
                     // Remove existing tasks
-                    [Task.self, TaskExtra.self, TaskAdditional.self, TaskAdditionalDetail.self, TaskAdditionalTransfer.self].forEach({
-                        realm.delete(realm.objects($0))
-                    })
+                    let deletedTasks = realm.objects(Task.self).filter("NOT (id IN %@)", newTasks.map({$0.id}))
+                    for task in deletedTasks {
+                        let objectsToDelete: [Object?] = [
+                            task.additional?.detail,
+                            task.additional?.transfer,
+                            task.additional,
+                            task.extra,
+                            task
+                        ]
+                        // Remove task & details
+                        objectsToDelete.compactMap({$0}).forEach({realm.delete($0)})
+                    }
                     
                     // Insert fresh tasks
-                    for t in tasksData {
-                        guard let tData = t.dictionaryObject, let task = Task(JSON: tData) else {continue}
-                        task.updateDate = Date()
-                        realm.add(task, update: .all)
+                    for task in newTasks {
+                        realm.add(task, update: .modified)
                     }
                     
                     // Save update date
