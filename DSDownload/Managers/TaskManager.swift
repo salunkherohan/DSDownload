@@ -206,8 +206,8 @@ class TaskManager {
                 (/* Do something ? */)
             }
             
-            // Update state. Stop action running cycle if necessary. Tasks data are up to date.
-            if self?.state.value == State.actionRunning.rawValue {
+            // Update state. Stop action running cycle. Tasks data are up to date.
+            if self?.state.value != State.running.rawValue {
                 self?.state.accept(State.running.rawValue)
             }
             
