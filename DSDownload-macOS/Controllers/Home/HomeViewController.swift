@@ -186,7 +186,7 @@ class HomeViewController: NSViewController {
     
     private func refreshLoadingState() {
         // Loading state
-        if sessionManager.state.value == SessionManager.State.pendingValidation.rawValue || taskManager.state.value == TaskManager.State.actionRunning.rawValue {
+        if sessionManager.state.value == SessionManager.State.pendingValidation.rawValue || taskManager.state.value == TaskManager.State.prepare.rawValue || taskManager.state.value == TaskManager.State.actionRunning.rawValue {
             startLoading()
         } else {
             endLoading()

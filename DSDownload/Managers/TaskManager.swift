@@ -15,9 +15,10 @@ import RxCocoa
 class TaskManager {
     
     enum State: Int {
-        case none
-        case running
-        case actionRunning
+        case initial       // Waiting valid session
+        case prepare       // First task retrieve, no history
+        case running       // Task retriever running
+        case actionRunning // Action retriever running
     }
     
     private(set) var state: BehaviorRelay<Int> = BehaviorRelay(value: 0) // Represent task manager state
@@ -131,9 +132,9 @@ class TaskManager {
             
             // Update state
             let isFirstRetrieve = dataManager.realmContent.object(ofType: User.self, forPrimaryKey: 0)?.taskUpdateDate == nil
-            state.accept(isFirstRetrieve || !actionOperationQueue.operations.isEmpty ? State.actionRunning.rawValue : State.running.rawValue)
+            state.accept(isFirstRetrieve ? State.prepare.rawValue : !actionOperationQueue.operations.isEmpty ? State.actionRunning.rawValue : State.running.rawValue)
         } else {
-            state.accept(State.none.rawValue)
+            state.accept(State.initial.rawValue)
             
             // Stop & clear queues
             retrieverOperationQueue.isSuspended = true
