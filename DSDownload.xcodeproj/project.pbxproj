@@ -65,6 +65,8 @@
 		697832D4244C7F51006A3768 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697832D3244C7F51006A3768 /* AsyncOperation.swift */; };
 		697832D5244C7F51006A3768 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697832D3244C7F51006A3768 /* AsyncOperation.swift */; };
 		6997D0D6238FFCA9008C9D7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6997D0D5238FFCA9008C9D7B /* Foundation.framework */; };
+		69AD210A245DCEB2001A8C7B /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD2109245DCEB2001A8C7B /* NotificationManager.swift */; };
+		69AD210E245DF5CB001A8C7B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69AD2110245DF5CB001A8C7B /* Localizable.strings */; };
 		69D2ED612456098E00846915 /* dsdownload.icns in Resources */ = {isa = PBXBuildFile; fileRef = 69D2ED602456098E00846915 /* dsdownload.icns */; };
 		69D92CDA244D96B1007A9D26 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D92CD9244D96B1007A9D26 /* Realm+Extensions.swift */; };
 		69D92CDB244D96D0007A9D26 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D92CD9244D96B1007A9D26 /* Realm+Extensions.swift */; };
@@ -155,6 +157,8 @@
 		697832CF244C70F3006A3768 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		697832D3244C7F51006A3768 /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		6997D0D5238FFCA9008C9D7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		69AD2109245DCEB2001A8C7B /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		69AD210F245DF5CB001A8C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		69D2ED602456098E00846915 /* dsdownload.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = dsdownload.icns; sourceTree = "<group>"; };
 		69D92CD9244D96B1007A9D26 /* Realm+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Extensions.swift"; sourceTree = "<group>"; };
 		8D2FA01D09B575DCEBA25D95 /* Pods_DSDownload_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DSDownload_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,12 +243,12 @@
 			);
 			sourceTree = "<group>";
 		};
-		188E05FD22942AD000698655 /* Extension */ = {
+		188E05FD22942AD000698655 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				188E05FE22942B0100698655 /* NSImage+color.swift */,
 			);
-			path = Extension;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		189E424A22035A26007B8F0B /* Products */ = {
@@ -293,8 +297,9 @@
 			isa = PBXGroup;
 			children = (
 				6961929723A83910002876C6 /* DSDownload.entitlements */,
-				188E05FD22942AD000698655 /* Extension */,
 				18D583F02204779200D99289 /* Monitor */,
+				188E05FD22942AD000698655 /* Extensions */,
+				69AD2108245DCE91001A8C7B /* Managers */,
 				18D583EB2204767A00D99289 /* Controllers */,
 				18D583EC2204768800D99289 /* Supporting Files */,
 				696CECAD2455BCD300C03AD8 /* Ressources */,
@@ -427,6 +432,7 @@
 		696CECAD2455BCD300C03AD8 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				69AD210B245DF5AD001A8C7B /* Localizable */,
 				696CECAE2455BCFC00C03AD8 /* Storyboards */,
 				696CECAF2455BD0700C03AD8 /* Assets */,
 			);
@@ -501,6 +507,22 @@
 				697832D3244C7F51006A3768 /* AsyncOperation.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		69AD2108245DCE91001A8C7B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				69AD2109245DCEB2001A8C7B /* NotificationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		69AD210B245DF5AD001A8C7B /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				69AD2110245DF5CB001A8C7B /* Localizable.strings */,
+			);
+			path = Localizable;
 			sourceTree = "<group>";
 		};
 		69D92CDC244DF079007A9D26 /* Home */ = {
@@ -728,6 +750,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69AD210E245DF5CB001A8C7B /* Localizable.strings in Resources */,
 				189E428322035A4C007B8F0B /* Assets.xcassets in Resources */,
 				69D2ED612456098E00846915 /* dsdownload.icns in Resources */,
 				189E428622035A4C007B8F0B /* Main.storyboard in Resources */,
@@ -885,6 +908,7 @@
 				18D583FE22048F9900D99289 /* Constants.swift in Sources */,
 				188E05FF22942B0100698655 /* NSImage+color.swift in Sources */,
 				69D92CDB244D96D0007A9D26 /* Realm+Extensions.swift in Sources */,
+				69AD210A245DCEB2001A8C7B /* NotificationManager.swift in Sources */,
 				188E05FA2293F9B100698655 /* VPNProfile.swift in Sources */,
 				18D583FB22048F5700D99289 /* Network.swift in Sources */,
 				697832D1244C711E006A3768 /* Notification+Extensions.swift in Sources */,
@@ -975,6 +999,14 @@
 				189E428522035A4C007B8F0B /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		69AD2110245DF5CB001A8C7B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				69AD210F245DF5CB001A8C7B /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1082,7 +1114,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = R625K24H9Q;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1109,7 +1141,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dsdownload;
+				PRODUCT_BUNDLE_IDENTIFIER = dsdownload.app;
 				PRODUCT_NAME = DSDownload;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1157,7 +1189,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = R625K24H9Q;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1177,7 +1209,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dsdownload;
+				PRODUCT_BUNDLE_IDENTIFIER = dsdownload.app;
 				PRODUCT_NAME = DSDownload;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1521,8 +1553,8 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = NO;
+				DEVELOPMENT_TEAM = R625K24H9Q;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1550,7 +1582,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dsdownload;
+				PRODUCT_BUNDLE_IDENTIFIER = dsdownload.app;
 				PRODUCT_NAME = DSDownload;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1600,8 +1632,8 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = NO;
+				DEVELOPMENT_TEAM = R625K24H9Q;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1622,7 +1654,7 @@
 				MARKETING_VERSION = 0.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dsdownload;
+				PRODUCT_BUNDLE_IDENTIFIER = dsdownload.app;
 				PRODUCT_NAME = DSDownload;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;

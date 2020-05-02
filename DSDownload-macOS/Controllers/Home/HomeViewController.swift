@@ -108,6 +108,7 @@ class HomeViewController: NSViewController {
     private let dataManager = DBManager.shared
     private let sessionManager = SessionManager.shared
     private let taskManager = TaskManager.shared
+    private let notificationManager = NotificationManager.shared
     
     private let taskContextMenu = NSMenu()
     private let exitContextMenu = NSMenu()

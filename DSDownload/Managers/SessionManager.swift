@@ -15,7 +15,7 @@ import RxCocoa
 class SessionManager {
     
     enum State: Int {
-        case notConnected = 0
+        case notConnected
         case pendingValidation
         case connected
     }
