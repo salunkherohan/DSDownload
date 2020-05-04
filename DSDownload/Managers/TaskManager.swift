@@ -16,7 +16,7 @@ class TaskManager {
     
     enum State: Int {
         case initial       // Waiting valid session
-        case prepare       // First task retrieve, no history
+        case prepare       // First task retrieve
         case running       // Task retriever running
         case actionRunning // Action retriever running
     }
@@ -128,11 +128,12 @@ class TaskManager {
             // Relaunch queues
             retrieverOperationQueue.isSuspended = false
             actionOperationQueue.isSuspended = false
-            if actionOperationQueue.operations.isEmpty {configureRetriever(delay: 0)}
-            
-            // Update state
-            let isFirstRetrieve = dataManager.realmContent.object(ofType: User.self, forPrimaryKey: 0)?.taskUpdateDate == nil
-            state.accept(isFirstRetrieve ? State.prepare.rawValue : !actionOperationQueue.operations.isEmpty ? State.actionRunning.rawValue : State.running.rawValue)
+            if actionOperationQueue.operations.isEmpty {
+                state.accept(State.prepare.rawValue)
+                configureRetriever(delay: 0)
+            } else {
+                state.accept(State.actionRunning.rawValue)
+            }
         } else {
             state.accept(State.initial.rawValue)
             

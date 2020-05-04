@@ -8,4 +8,5 @@
 
 // NOTIFICATIONS
 
-"Notification.add.title" = "Task added with success 🥳";
+"Notification.added.title" = "Task added with success 🥳";
+"Notification.completed.title" = "Task completed ✅";

@@ -23,7 +23,8 @@ class NotificationManager {
     }
     
     deinit {
-        notificationToken?.invalidate()
+        globalNotificationToken?.invalidate()
+        completedNotificationToken?.invalidate()
     }
     
     // MARK: Private
@@ -35,7 +36,9 @@ class NotificationManager {
     private let disposeBag = DisposeBag()
     
     private var taskManagerAsyncState: Int?
-    private var notificationToken: NotificationToken?
+    
+    private var globalNotificationToken: NotificationToken?
+    private var completedNotificationToken: NotificationToken?
     
     private func configure() {
         // Task manager state observer
@@ -45,8 +48,8 @@ class NotificationManager {
             }
         }).disposed(by: disposeBag)
         
-        // Tasks observer
-        notificationToken = dataManager.realmContent.objects(Task.self).observe { [weak self] (changes) in
+        // Global tasks observer
+        globalNotificationToken = dataManager.realmContent.objects(Task.self).observe { [weak self] (changes) in
             // Be sure user is connected
             guard self?.sessionManager.state.value == SessionManager.State.connected.rawValue else {return}
             
@@ -54,17 +57,30 @@ class NotificationManager {
             guard self?.taskManagerAsyncState == TaskManager.State.actionRunning.rawValue else {return}
             
             switch changes {
-              case .initial: break
-              case .update(let results, _, let insertions, _):
+            case .update(let results, _, let insertions, _):
                 for i in insertions {
                     guard i < results.count else {continue}
-                    let content = (id: results[i].id, title: results[i].title)
-                    DispatchQueue.main.async { [weak self] in
-                        self?.notify(with: content.id, title: NSLocalizedString("Notification.add.title", comment: ""), text: content.title)
-                    }
+                    self?.notify(with: "added-\(results[i].id)", title: NSLocalizedString("Notification.added.title", comment: ""), text: results[i].title)
                 }
-                break
-              case .error(let error): fatalError("\(error)")
+            case .initial, .error: break
+            }
+        }
+        
+        // Completed tasks observer
+        completedNotificationToken = dataManager.realmContent.objects(Task.self).filter("status = %@", Task.StatusType.finished.rawValue).observe { [weak self] (changes) in
+            // Be sure user is connected
+            guard self?.sessionManager.state.value == SessionManager.State.connected.rawValue else {return}
+            
+            // Analyse changes only when task manager running
+            guard self?.taskManagerAsyncState == TaskManager.State.running.rawValue || self?.taskManagerAsyncState == TaskManager.State.actionRunning.rawValue else {return}
+            
+            switch changes {
+            case .update(let results, _, let insertions, _):
+                for i in insertions {
+                    guard i < results.count else {continue}
+                    self?.notify(with: "completed-\(results[i].id)", title: NSLocalizedString("Notification.completed.title", comment: ""), text: results[i].title)
+                }
+            case .initial, .error: break
             }
         }
     }
