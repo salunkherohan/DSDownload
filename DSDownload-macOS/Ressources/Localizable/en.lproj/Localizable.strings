@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  DSDownload
+
+  Created by Thomas LE GRAVIER on 02/05/2020.
+  
+*/
+
+// NOTIFICATIONS
+
+"Notification.added.title" = "Task added with success 🥳";
+"Notification.completed.title" = "Task completed ✅";

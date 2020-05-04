@@ -108,6 +108,7 @@ class HomeViewController: NSViewController {
     private let dataManager = DBManager.shared
     private let sessionManager = SessionManager.shared
     private let taskManager = TaskManager.shared
+    private let notificationManager = NotificationManager.shared
     
     private let taskContextMenu = NSMenu()
     private let exitContextMenu = NSMenu()
@@ -186,7 +187,7 @@ class HomeViewController: NSViewController {
     
     private func refreshLoadingState() {
         // Loading state
-        if sessionManager.state.value == SessionManager.State.pendingValidation.rawValue || taskManager.state.value == TaskManager.State.actionRunning.rawValue {
+        if sessionManager.state.value == SessionManager.State.pendingValidation.rawValue || taskManager.state.value == TaskManager.State.prepare.rawValue || taskManager.state.value == TaskManager.State.actionRunning.rawValue {
             startLoading()
         } else {
             endLoading()

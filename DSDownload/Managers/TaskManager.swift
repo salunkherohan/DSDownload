@@ -15,9 +15,10 @@ import RxCocoa
 class TaskManager {
     
     enum State: Int {
-        case none
-        case running
-        case actionRunning
+        case initial       // Waiting valid session
+        case prepare       // First task retrieve
+        case running       // Task retriever running
+        case actionRunning // Action retriever running
     }
     
     private(set) var state: BehaviorRelay<Int> = BehaviorRelay(value: 0) // Represent task manager state
@@ -127,13 +128,14 @@ class TaskManager {
             // Relaunch queues
             retrieverOperationQueue.isSuspended = false
             actionOperationQueue.isSuspended = false
-            if actionOperationQueue.operations.isEmpty {configureRetriever(delay: 0)}
-            
-            // Update state
-            let isFirstRetrieve = dataManager.realmContent.object(ofType: User.self, forPrimaryKey: 0)?.taskUpdateDate == nil
-            state.accept(isFirstRetrieve || !actionOperationQueue.operations.isEmpty ? State.actionRunning.rawValue : State.running.rawValue)
+            if actionOperationQueue.operations.isEmpty {
+                state.accept(State.prepare.rawValue)
+                configureRetriever(delay: 0)
+            } else {
+                state.accept(State.actionRunning.rawValue)
+            }
         } else {
-            state.accept(State.none.rawValue)
+            state.accept(State.initial.rawValue)
             
             // Stop & clear queues
             retrieverOperationQueue.isSuspended = true
@@ -169,17 +171,33 @@ class TaskManager {
             switch result {
             case .success(let json):
                 guard let tasksData = json?.dictionary?["data"]?["tasks"].array, let realm = self?.dataManager.realmContent else {return}
+                
+                // List fresh task
+                var newTasks: [Task] = []
+                for t in tasksData {
+                    guard let tData = t.dictionaryObject, let task = Task(JSON: tData) else {continue}
+                    task.updateDate = Date()
+                    newTasks.append(task)
+                }
+                
                 try? realm.safeWrite {
                     // Remove existing tasks
-                    [Task.self, TaskExtra.self, TaskAdditional.self, TaskAdditionalDetail.self, TaskAdditionalTransfer.self].forEach({
-                        realm.delete(realm.objects($0))
-                    })
+                    let deletedTasks = realm.objects(Task.self).filter("NOT (id IN %@)", newTasks.map({$0.id}))
+                    for task in deletedTasks {
+                        let objectsToDelete: [Object?] = [
+                            task.additional?.detail,
+                            task.additional?.transfer,
+                            task.additional,
+                            task.extra,
+                            task
+                        ]
+                        // Remove task & details
+                        objectsToDelete.compactMap({$0}).forEach({realm.delete($0)})
+                    }
                     
                     // Insert fresh tasks
-                    for t in tasksData {
-                        guard let tData = t.dictionaryObject, let task = Task(JSON: tData) else {continue}
-                        task.updateDate = Date()
-                        realm.add(task, update: .all)
+                    for task in newTasks {
+                        realm.add(task, update: .modified)
                     }
                     
                     // Save update date
@@ -189,8 +207,8 @@ class TaskManager {
                 (/* Do something ? */)
             }
             
-            // Update state. Stop action running cycle if necessary. Tasks data are up to date.
-            if self?.state.value == State.actionRunning.rawValue {
+            // Update state. Stop action running cycle. Tasks data are up to date.
+            if self?.state.value != State.running.rawValue {
                 self?.state.accept(State.running.rawValue)
             }
             
